@@ -1,52 +1,49 @@
-<!--<template>-->
-<!--    <div>-->
-<!--        {{ post.title }}-->
-<!--    </div>-->
-<!--</template>-->
-
-<!--<script>-->
-<!--    export default {-->
-<!--        props: {-->
-<!--            post: Object,-->
-<!--        }-->
-<!--    }-->
-<!--</script>-->
-
-
 <template>
     <div>
-        <div class="font-semibold">
-            {{ post.title }}
+        <div>
+            <div class="font-semibold mb-3">
+                {{ post.title }}
+            </div>
+            
+            <div class="flex justify-between text-gray-600 italic mb-3">
+                <div>
+                    Door: {{ post.user.name }}
+                </div>
+                
+                <div>
+                    {{ formattedDate }}
+                </div>
+            </div>
+            
+            <div v-if="indexResult" class="text-gray-600">
+                {{ truncatedBody }}
+            </div>
+            <div v-else class="text-gray-600">
+                {{ post.body }}
+            </div>
         </div>
-        <div class="text-gray-600">
-            {{ post.body }}
-        </div>
-        <div class="text-gray-600">
-<!--            {{ post.user.name }}-->
-        </div>
-
-        <hr class="my-5">
+        
+        <hr v-if="indexResult" class="my-5">
     </div>
 </template>
 
 <script>
-    // import { onMounted } from "vue";
+    import { format, parseISO } from 'date-fns'
 
     export default {
         props: {
             post: Object,
+            indexResult: String,
         },
-
-        // filters: {
-        //     truncate(string, words) {
-        //         return string.split(' ').splice(0, words).join(' ') + '...';
-        //     }
-        // },
-
-        // setup () {
-        //     onMounted(() => {
-        //         console.log('mounted in the composition api!')
-        //     })
-        // }
+        
+        computed: {
+            formattedDate() {
+                return format(parseISO(this.post.created_at), 'd MMM. yyyy')
+            },
+            
+            truncatedBody() {
+                return this.post.body.split(' ').splice(0, 10).join(' ') + '...';
+            }
+        }
     }
 </script>

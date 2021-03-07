@@ -65,6 +65,8 @@ class PostController extends Controller
      */
     public function show(Post $post): Response
     {
+        $post->load('user');
+        
         return Inertia::render('Posts/Show', compact('post'));
     }
 
