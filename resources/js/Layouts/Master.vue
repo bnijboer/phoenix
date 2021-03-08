@@ -17,14 +17,16 @@
                 </div>
             </header>
 
-            <section class="flex">
-                <main class="w-full">
-                    <slot />
-                </main>
+            <section class="bg-image">
+                <div class="flex bg-gradient-overlay">
+                    <main class="w-full">
+                        <slot />
+                    </main>
 
-                <section class="hidden md:block w-96">
-                    <biography />
-                </section>
+                    <section class="hidden md:block w-96">
+                        <biography />
+                    </section>
+                </div>
             </section>
         </div>
 

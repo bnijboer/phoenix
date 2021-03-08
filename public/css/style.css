@@ -1,0 +1,9 @@
+.bg-image {
+    background-color: red;
+    background-size: cover;
+}
+
+.bg-gradient-overlay {
+    background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 98%);
+    background-size: cover;
+}
