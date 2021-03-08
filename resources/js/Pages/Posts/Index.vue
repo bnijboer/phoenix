@@ -2,7 +2,7 @@
     <layout-master>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                All Posts
+                The Goddess In Me
             </h2>
         </template>
 
@@ -12,8 +12,12 @@
                     <div class="p-6 bg-white border-b border-gray-200">
                         <div v-for="post in posts" :key="post.id">
                             <inertia-link :href="route('posts.show', post)">
-                                <post indexResult="indexResult" :post="post" />
+                                <post :post="post" />
+                                
+                                <div class="mt-5">Read more<i class="fas fa-angle-double-right text-gray-600 ml-2" /></div>
                             </inertia-link>
+        
+                            <hr class="my-5">
                         </div>
                     </div>
                 </div>

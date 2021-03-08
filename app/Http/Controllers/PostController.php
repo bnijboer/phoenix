@@ -6,6 +6,7 @@ use App\Models\Post;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -26,9 +27,17 @@ class PostController extends Controller
      */
     public function index(): Response
     {
-        $posts = Post::with('user')->get();
-
-        return Inertia::render('Posts/Index', compact('posts'));
+        return Inertia::render('Posts/Index', [
+            'posts' => Post::all()->map(function ($post) {
+                return [
+                    'id' => $post->id,
+                    'title' => $post->title,
+                    'body' => Str::words($post->body, 10, '...'),
+                    'image' => $post->image,
+                    'created_at' => $post->created_at,
+                ];
+            }),
+        ]);
     }
 
     /**
@@ -65,8 +74,6 @@ class PostController extends Controller
      */
     public function show(Post $post): Response
     {
-        $post->load('user');
-        
         return Inertia::render('Posts/Show', compact('post'));
     }
 

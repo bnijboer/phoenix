@@ -2,27 +2,18 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center">
-                    <inertia-link :href="route('landing')">
-                        <breeze-application-logo class="block h-9 w-auto" />
-                    </inertia-link>
-                </div>
+            <!-- Navigation Links -->
+            <div class="hidden space-x-8 sm:-my-px sm:flex">
+                <breeze-nav-link :href="route('posts.index')" :active="route().current('posts.index')">
+                    Home
+                </breeze-nav-link>
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <breeze-nav-link :href="route('posts.index')" :active="route().current('posts.index')">
-                        All Posts
-                    </breeze-nav-link>
-
-                    <breeze-nav-link v-if="$page.props.auth.user" :href="route('posts.create')" :active="route().current('posts.create')">
-                        New Post
-                    </breeze-nav-link>
-                </div>
+                <breeze-nav-link :href="route('posts.create')" :active="route().current('posts.create')">
+                    New Post
+                </breeze-nav-link>
             </div>
 
-            <div v-if="$page.props.auth.user" class="hidden sm:flex sm:items-center sm:ml-6">
+            <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
                     <breeze-dropdown align="right" width="48">
@@ -63,10 +54,10 @@
     <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <breeze-responsive-nav-link :href="route('posts.index')" :active="route().current('posts.index')">
-                All Posts
+                Home
             </breeze-responsive-nav-link>
 
-            <breeze-responsive-nav-link v-if="$page.props.auth.user" :href="route('posts.create')" :active="route().current('posts.create')">
+            <breeze-responsive-nav-link :href="route('posts.create')" :active="route().current('posts.create')">
                 New Post
             </breeze-responsive-nav-link>
         </div>
@@ -75,7 +66,6 @@
         <div v-if="$page.props.auth.user" class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">
                 <div class="font-medium text-base text-gray-800">{{ $page.props.auth.user.name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ $page.props.auth.user.email }}</div>
             </div>
 
             <div class="mt-3 space-y-1">
@@ -88,7 +78,6 @@
 </template>
 
 <script>
-import BreezeApplicationLogo from '@/Components/ApplicationLogo'
 import BreezeDropdown from '@/Components/Dropdown'
 import BreezeDropdownLink from '@/Components/DropdownLink'
 import BreezeNavLink from '@/Components/NavLink'
@@ -96,7 +85,6 @@ import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink'
 
 export default {
     components: {
-        BreezeApplicationLogo,
         BreezeDropdown,
         BreezeDropdownLink,
         BreezeNavLink,
