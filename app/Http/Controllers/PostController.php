@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -60,13 +60,13 @@ class PostController extends Controller
      * @param Request $request
      * @throws AuthorizationException
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         $this->authorize('create', Post::class);
-
-        dd($request);
         
-        // Post::create($request->validated());
+        $post = Auth::user()->posts()->create($request->validated());
+        
+        return redirect()->route('posts.show', $post);
     }
 
     /**
@@ -101,7 +101,7 @@ class PostController extends Controller
      * @param Post $post
      * @throws AuthorizationException
      */
-    public function update(Request $request, Post $post)
+    public function update(ReviewRequest $request, Post $post)
     {
         $this->authorize('update', $post);
 

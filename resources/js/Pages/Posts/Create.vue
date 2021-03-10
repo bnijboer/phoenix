@@ -6,11 +6,13 @@
             <div>
                 <post-label for="title" />
                 <post-input id="title" type="text" placeholder="Titel" class="mt-1 block w-full" v-model="form.title" required autofocus />
+                <input-error :message="errors.title" />
             </div>
             
-            <div>
+            <div class="mt-5">
                 <post-label for="body" />
                 <post-input id="body" type="text" placeholder="Inhoud" class="mt-1 block w-full" v-model="form.body" required autofocus />
+                <input-error :message="errors.body" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
@@ -26,42 +28,39 @@
 
 <script>
     import BackLink from '@/Components/BackLink.vue'
+    import InputError from '@/Components/InputError'
     import LayoutMaster from '@/Layouts/Master'
     import PostInput from '@/Components/Input'
     import PostLabel from '@/Components/Label'
     import PostSubmitButton from '@/Components/Button'
-    import PostValidationErrors from '@/Components/ValidationErrors'
 
     export default {
         components: {
             BackLink,
+            InputError,
             LayoutMaster,
             PostInput,
             PostLabel,
             PostSubmitButton,
-            PostValidationErrors,
+        },
+        
+        props: {
+            errors: Object,
         },
         
         data() {
             return {
                 form: this.$inertia.form({
                     title: '',
-                })
+                    body: '',
+                }),
             }
         },
         
-        
         methods: {
             submit() {
-                this.form
-                    .transform(data => ({
-                        ... data,
-                    }))
-                    .post(this.route('posts.store'), {
-                        // onFinish: () => this.form.reset('password'),
-                        // console.log('gelukt');
-                    })
-            }
+                this.$inertia.post(this.route('posts.store'), this.form)
+            },
         }
     }
 </script>
