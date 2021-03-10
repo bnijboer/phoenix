@@ -32,7 +32,8 @@ class PostController extends Controller
                 return [
                     'id' => $post->id,
                     'title' => $post->title,
-                    'body' => Str::words($post->body, 10, '...'),
+                    'body' => $post->body,
+                    // 'body' => Str::words($post->body, 10, '...'),
                     'image' => $post->image,
                     'created_at' => $post->created_at,
                 ];
