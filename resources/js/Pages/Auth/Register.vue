@@ -26,11 +26,11 @@
 
                 <div class="flex items-center justify-end mt-4">
                     <inertia-link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                        Already registered?
+                        Heb je al een account?
                     </inertia-link>
 
                     <breeze-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        Register
+                        Registreren
                     </breeze-button>
                 </div>
             </form>

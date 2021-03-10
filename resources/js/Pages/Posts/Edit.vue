@@ -1,20 +1,20 @@
 <template>
     <layout-master>
-        <template #header>Post Bewerken</template>
+        <template #header>Bericht bewerken</template>
 
         Edit Post
 
-        <back-button />
+        <back-link />
     </layout-master>
 </template>
 
 <script>
-    import BackButton from '../../Components/BackButton.vue'
+    import BackLink from '@/Components/BackLink.vue'
     import LayoutMaster from '@/Layouts/Master'
 
     export default {
         components: {
-            BackButton,
+            BackLink,
             LayoutMaster,
         },
 

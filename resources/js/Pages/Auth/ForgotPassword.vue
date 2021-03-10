@@ -2,7 +2,7 @@
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
         <div class="w-80">
             <div class="mb-4 text-sm text-gray-600">
-                Let us know your email address and we will email you a password reset link that will allow you to choose a new one.
+                Als je je e-mailadres opgeeft dan zal je een link toegestuurd krijgen waarmee je een nieuw wachtwoord kan instellen.
             </div>
 
             <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
@@ -19,7 +19,7 @@
 
                 <div class="flex items-center justify-end mt-4">
                     <breeze-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        Email Password Reset Link
+                        Stuur mij een link
                     </breeze-button>
                 </div>
             </form>

@@ -2,7 +2,7 @@
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
         <div class="w-80">
             <div class="mb-4 text-sm text-gray-600">
-                This is a secure area of the application. Please confirm your password before continuing.
+                Dit is een beveiligd onderdeel. Geef je wachtwoord op om door te kunnen gaan.
             </div>
 
             <breeze-validation-errors class="mb-4" />
@@ -15,7 +15,7 @@
 
                 <div class="flex justify-end mt-4">
                     <breeze-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        Confirm
+                        Bevestigen
                     </breeze-button>
                 </div>
             </form>

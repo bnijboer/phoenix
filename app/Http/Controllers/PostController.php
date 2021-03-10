@@ -64,7 +64,9 @@ class PostController extends Controller
     {
         $this->authorize('create', Post::class);
 
-        Post::create($request->validated());
+        dd($request);
+        
+        // Post::create($request->validated());
     }
 
     /**

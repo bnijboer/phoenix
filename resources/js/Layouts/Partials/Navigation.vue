@@ -9,7 +9,7 @@
                 </breeze-nav-link>
 
                 <breeze-nav-link :href="route('posts.create')" :active="route().current('posts.create')">
-                    New Post
+                    Nieuw bericht
                 </breeze-nav-link>
             </div>
 
@@ -31,7 +31,7 @@
 
                         <template #content>
                             <breeze-dropdown-link :href="route('logout')" method="post" as="button">
-                                Log Out
+                                Uitloggen
                             </breeze-dropdown-link>
                         </template>
                     </breeze-dropdown>
@@ -58,7 +58,7 @@
             </breeze-responsive-nav-link>
 
             <breeze-responsive-nav-link :href="route('posts.create')" :active="route().current('posts.create')">
-                New Post
+                Nieuw bericht
             </breeze-responsive-nav-link>
         </div>
 
@@ -70,7 +70,7 @@
 
             <div class="mt-3 space-y-1">
                 <breeze-responsive-nav-link :href="route('logout')" method="post" as="button">
-                    Log Out
+                    Uitloggen
                 </breeze-responsive-nav-link>
             </div>
         </div>

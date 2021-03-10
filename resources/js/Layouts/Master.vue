@@ -7,7 +7,7 @@
         <header class="flex bg-white">
             <div class="flex-shrink-0 flex items-center pl-4 sm:pl-6 lg:pl-8">
                 <inertia-link :href="route('landing')">
-                    <breeze-application-logo class="block h-9 w-auto" />
+                    <application-logo class="block h-9 w-auto" />
                 </inertia-link>
             </div>
             
@@ -48,13 +48,13 @@
 
 <script>
     import Biography from '@/Layouts/Partials/Biography';
-    import BreezeApplicationLogo from '@/Components/ApplicationLogo'
+    import ApplicationLogo from '@/Components/ApplicationLogo'
     import Navigation from '@/Layouts/Partials/Navigation';
 
     export default {
         components: {
+            ApplicationLogo,
             Biography,
-            BreezeApplicationLogo,
             Navigation,
         },
     }
