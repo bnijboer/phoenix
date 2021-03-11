@@ -2,7 +2,7 @@
     <layout-master>
         <template #header>Nieuw bericht</template>
 
-        <form @submit.prevent="form.post(route('posts.store'))">
+        <form @submit.prevent="form.post(route('posts.store'), form)">
             <div>
                 <form-label for="title" />
                 <form-input id="title" type="text" placeholder="Titel" class="mt-1 block w-full" v-model="form.title" required autofocus />
@@ -11,8 +11,14 @@
             
             <div class="mt-4">
                 <form-label for="body" />
-                <form-input id="body" type="text" placeholder="Inhoud" class="mt-1 block w-full" v-model="form.body" required autofocus />
+                <form-input id="body" type="text" placeholder="Inhoud" class="mt-1 block w-full" v-model="form.body" required />
                 <validation-error :message="form.errors.body" />
+            </div>
+            
+            <div class="mt-4">
+                <form-label for="image" />
+                <form-input id="image" type="file" class="mt-1 block w-full" @change="selectFile" />
+                <validation-error :message="form.errors.image" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
@@ -51,9 +57,16 @@
             const form = useForm({
                 title: null,
                 body: null,
+                image: null,
             });
 
             return { form };
         },
+
+        methods: {
+            selectFile(event) {
+                this.form.image = event.target.files[0];
+            },
+        }
     }
 </script>
