@@ -4,21 +4,21 @@
 
         <form @submit.prevent="form.patch(route('posts.update', post), form)">
             <div>
-                <post-label for="title" />
-                <post-input id="title" type="text" placeholder="Titel" class="mt-1 block w-full" v-model="form.title" required autofocus />
-                <input-error :message="form.errors.title" />
+                <form-label for="title" />
+                <form-input id="title" type="text" placeholder="Titel" class="mt-1 block w-full" v-model="form.title" required autofocus />
+                <validation-error :message="form.errors.title" />
             </div>
             
             <div class="mt-4">
-                <post-label for="body" />
-                <post-input id="body" type="text" placeholder="Inhoud" class="mt-1 block w-full" v-model="form.body" required autofocus />
-                <input-error :message="form.errors.body" />
+                <form-label for="body" />
+                <form-input id="body" type="text" placeholder="Inhoud" class="mt-1 block w-full" v-model="form.body" required />
+                <validation-error :message="form.errors.body" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <post-submit-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <submit-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Opslaan
-                </post-submit-button>
+                </submit-button>
             </div>
         </form>
 
@@ -29,20 +29,20 @@
 <script>
     import { useForm } from '@inertiajs/inertia-vue3'
     import BackLink from '@/Components/BackLink.vue'
-    import InputError from '@/Components/InputError'
+    import FormInput from '@/Components/Input'
+    import FormLabel from '@/Components/Label'
     import LayoutMaster from '@/Layouts/Master'
-    import PostInput from '@/Components/Input'
-    import PostLabel from '@/Components/Label'
-    import PostSubmitButton from '@/Components/Button'
+    import SubmitButton from '@/Components/Button'
+    import ValidationError from '@/Components/InputError'
     
     export default {
         components: {
             BackLink,
-            InputError,
             LayoutMaster,
-            PostInput,
-            PostLabel,
-            PostSubmitButton,
+            FormInput,
+            FormLabel,
+            SubmitButton,
+            ValidationError,
         },
         
         inheritAttrs: false,
