@@ -1,16 +1,13 @@
 <template>
     <div class="wrapper">
-        <nav v-if="$page.props.auth.user" class="bg-white">
+        <!-- <nav v-if="$page.props.auth.user" class="bg-white">
+            <navigation />
+        </nav> -->
+        <nav class="bg-white">
             <navigation />
         </nav>
 
-        <header class="flex bg-white">
-            <div class="flex-shrink-0 flex items-center pl-4 sm:pl-6 lg:pl-8">
-                <inertia-link :href="route('landing')">
-                    <application-logo class="block h-9 w-auto" />
-                </inertia-link>
-            </div>
-            
+        <header class="flex bg-white pt-8">
             <div v-if="$slots.header" class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                     <slot name="header" />
@@ -48,12 +45,10 @@
 
 <script>
     import Biography from '@/Layouts/Partials/Biography';
-    import ApplicationLogo from '@/Components/ApplicationLogo'
     import Navigation from '@/Layouts/Partials/Navigation';
 
     export default {
         components: {
-            ApplicationLogo,
             Biography,
             Navigation,
         },

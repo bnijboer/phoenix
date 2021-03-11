@@ -2,24 +2,31 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
+            <!-- Application Logo -->
+            <div class="flex-shrink-0 flex items-center pl-4 sm:pl-6 lg:pl-8">
+                <inertia-link :href="route('landing')">
+                    <breeze-application-logo class="block h-9 w-auto" />
+                </inertia-link>
+            </div>
+            
             <!-- Navigation Links -->
             <div class="hidden space-x-8 sm:-my-px sm:flex">
                 <breeze-nav-link :href="route('posts.index')" :active="route().current('posts.index')">
                     Home
                 </breeze-nav-link>
 
-                <breeze-nav-link :href="route('posts.create')" :active="route().current('posts.create')">
-                    Nieuw bericht
-                </breeze-nav-link>
-
                 <breeze-nav-link :href="route('about')" :active="route().current('about')">
                     Over mij
+                </breeze-nav-link>
+
+                <breeze-nav-link v-if="$page.props.auth.user" :href="route('posts.create')" :active="route().current('posts.create')">
+                    Nieuw bericht
                 </breeze-nav-link>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Settings Dropdown -->
-                <div class="ml-3 relative">
+                <div v-if="$page.props.auth.user" class="ml-3 relative">
                     <breeze-dropdown align="right" width="48">
                         <template #trigger>
                         <span class="inline-flex rounded-md">
@@ -61,12 +68,12 @@
                 Home
             </breeze-responsive-nav-link>
 
-            <breeze-responsive-nav-link :href="route('posts.create')" :active="route().current('posts.create')">
-                Nieuw bericht
-            </breeze-responsive-nav-link>
-
             <breeze-responsive-nav-link :href="route('about')" :active="route().current('about')">
                 Over mij
+            </breeze-responsive-nav-link>
+
+            <breeze-responsive-nav-link v-if="$page.props.auth.user" :href="route('posts.create')" :active="route().current('posts.create')">
+                Nieuw bericht
             </breeze-responsive-nav-link>
         </div>
 
@@ -86,23 +93,25 @@
 </template>
 
 <script>
-import BreezeDropdown from '@/Components/Dropdown'
-import BreezeDropdownLink from '@/Components/DropdownLink'
-import BreezeNavLink from '@/Components/NavLink'
-import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink'
+    import BreezeApplicationLogo from '@/Components/ApplicationLogo'
+    import BreezeDropdown from '@/Components/Dropdown'
+    import BreezeDropdownLink from '@/Components/DropdownLink'
+    import BreezeNavLink from '@/Components/NavLink'
+    import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink'
 
-export default {
-    components: {
-        BreezeDropdown,
-        BreezeDropdownLink,
-        BreezeNavLink,
-        BreezeResponsiveNavLink,
-    },
+    export default {
+        components: {
+            BreezeApplicationLogo,
+            BreezeDropdown,
+            BreezeDropdownLink,
+            BreezeNavLink,
+            BreezeResponsiveNavLink,
+        },
 
-    data() {
-        return {
-            showingNavigationDropdown: false,
-        }
-    },
-}
+        data() {
+            return {
+                showingNavigationDropdown: false,
+            }
+        },
+    }
 </script>
