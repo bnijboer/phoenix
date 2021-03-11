@@ -3,6 +3,10 @@
         <template #header>The Goddess In Me</template>
         
         <post :post="post" />
+        
+        <inertia-link :href="route('posts.edit', post)">
+            Edit
+        </inertia-link>
 
         <back-link />
     </layout-master>
@@ -19,6 +23,8 @@
             LayoutMaster,
             Post,
         },
+        
+        inheritAttrs: false,
 
         props: {
             post: Object,

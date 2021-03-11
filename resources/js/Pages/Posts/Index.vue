@@ -27,6 +27,8 @@
             LayoutMaster,
             Post,
         },
+        
+        inheritAttrs: false,
 
         props: {
             posts: Object,

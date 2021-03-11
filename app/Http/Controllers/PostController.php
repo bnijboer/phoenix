@@ -7,7 +7,6 @@ use App\Models\Post;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
-use Inertia\Inertia;
 use Inertia\Response;
 
 class PostController extends Controller
@@ -27,17 +26,8 @@ class PostController extends Controller
      */
     public function index(): Response
     {
-        return Inertia::render('Posts/Index', [
-            'posts' => Post::all()->map(function ($post) {
-                return [
-                    'id' => $post->id,
-                    'title' => $post->title,
-                    'body' => $post->body,
-                    // 'body' => Str::words($post->body, 10, '...'),
-                    'image' => $post->image,
-                    'created_at' => $post->created_at,
-                ];
-            }),
+        return inertia('Posts/Index', [
+            'posts' => Post::latest()->get(),
         ]);
     }
 
@@ -51,13 +41,13 @@ class PostController extends Controller
     {
         $this->authorize('create', Post::class);
 
-        return Inertia::render('Posts/Create');
+        return inertia('Posts/Create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param PostRequest $request
      * @throws AuthorizationException
      */
     public function store(PostRequest $request)
@@ -77,7 +67,7 @@ class PostController extends Controller
      */
     public function show(Post $post): Response
     {
-        return Inertia::render('Posts/Show', compact('post'));
+        return inertia('Posts/Show', compact('post'));
     }
 
     /**
@@ -91,21 +81,23 @@ class PostController extends Controller
     {
         $this->authorize('update', $post);
 
-        return Inertia::render('Posts/Edit');
+        return inertia('Posts/Edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param PostRequest $request
      * @param Post $post
      * @throws AuthorizationException
      */
-    public function update(ReviewRequest $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
         $this->authorize('update', $post);
 
         $post->update($request->validated());
+        
+        return redirect()->route('posts.show', $post);
     }
 
     /**
@@ -120,5 +112,7 @@ class PostController extends Controller
         $this->authorize('delete', $post);
 
         $post->delete();
+        
+        return redirect()->route('posts.index');
     }
 }
