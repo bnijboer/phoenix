@@ -1,8 +1,5 @@
 <template>
     <div class="wrapper">
-        <!-- <nav v-if="$page.props.auth.user" class="bg-white">
-            <navigation />
-        </nav> -->
         <nav class="bg-white">
             <navigation />
         </nav>
