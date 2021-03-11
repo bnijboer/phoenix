@@ -32,9 +32,9 @@
                     </div>
                 </main>
 
-                <section class="hidden md:block w-96">
+                <!-- <section class="hidden md:block w-96">
                     <biography />
-                </section>
+                </section> -->
             </div>
         </section>
     </div>

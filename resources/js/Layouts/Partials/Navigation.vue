@@ -11,6 +11,10 @@
                 <breeze-nav-link :href="route('posts.create')" :active="route().current('posts.create')">
                     Nieuw bericht
                 </breeze-nav-link>
+
+                <breeze-nav-link :href="route('about')" :active="route().current('about')">
+                    Over mij
+                </breeze-nav-link>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -59,6 +63,10 @@
 
             <breeze-responsive-nav-link :href="route('posts.create')" :active="route().current('posts.create')">
                 Nieuw bericht
+            </breeze-responsive-nav-link>
+
+            <breeze-responsive-nav-link :href="route('about')" :active="route().current('about')">
+                Over mij
             </breeze-responsive-nav-link>
         </div>
 

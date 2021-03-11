@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\LandingController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', LandingController::class)->name('landing');
+Route::get('/', [PagesController::class, 'landing'])->name('landing');
+Route::get('/about', [PagesController::class, 'about'])->name('about');
 
 Route::resource('posts', PostController::class);
 
