@@ -52,9 +52,6 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        
-        dd($request);
-        
         $this->authorize('create', Post::class);
         
         $post = Auth::user()->posts()->create($request->validated());

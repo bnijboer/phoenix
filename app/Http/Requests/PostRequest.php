@@ -23,8 +23,6 @@ class PostRequest extends FormRequest
      */
     public function rules()
     {
-        dd($this);
-        
         return [
             'title' => ['required', 'string'],
             'body' => ['required', 'string'],
