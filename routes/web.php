@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostTagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PagesController::class, 'landing'])->name('landing');
 Route::get('/about', [PagesController::class, 'about'])->name('about');
 
+Route::post('/posts/{post}/tags', [PostTagController::class, 'store'])->name('posts.tags.store');
 Route::resource('posts', PostController::class);
 
 require __DIR__.'/auth.php';

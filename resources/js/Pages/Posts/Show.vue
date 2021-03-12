@@ -4,7 +4,7 @@
         
         <post :post="post" />
         
-        <div v-if="$page.props.auth.user" class="flex items-center justify-end mt-4">
+        <div v-if="$page.props.auth.user" class="flex items-center justify-end mt-8">
             <inertia-link :href="route('posts.edit', post)" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">
                 Bewerken
             </inertia-link>

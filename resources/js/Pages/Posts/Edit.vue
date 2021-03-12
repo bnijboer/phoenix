@@ -2,25 +2,41 @@
     <layout-master>
         <template #header>Bericht bewerken</template>
 
-        <form @submit.prevent="form.patch(route('posts.update', post), form)">
-            <div>
-                <form-label for="title" />
-                <form-input id="title" type="text" placeholder="Titel" class="mt-1 block w-full" v-model="form.title" required autofocus />
-                <validation-error :message="form.errors.title" />
-            </div>
-            
-            <div class="mt-4">
-                <form-label for="body" />
-                <form-input id="body" type="text" placeholder="Inhoud" class="mt-1 block w-full" v-model="form.body" required />
-                <validation-error :message="form.errors.body" />
-            </div>
+        <div>
+            <form @submit.prevent="form.patch(route('posts.update', post), form)">
+                <div>
+                    <form-label for="title" />
+                    <form-input id="title" type="text" placeholder="Titel" class="mt-1 block w-full" v-model="form.title" required autofocus />
+                    <validation-error :message="form.errors.title" />
+                </div>
+                
+                <div class="mt-4">
+                    <form-label for="body" />
+                    <form-input id="body" type="text" placeholder="Inhoud" class="mt-1 block w-full" v-model="form.body" required />
+                    <validation-error :message="form.errors.body" />
+                </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <submit-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Opslaan
-                </submit-button>
-            </div>
-        </form>
+                <div class="flex items-center justify-end mt-4">
+                    <submit-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        Opslaan
+                    </submit-button>
+                </div>
+            </form>
+        </div>
+
+        <div class="flex justify-end mt-8">
+            <form @submit.prevent="form.post(route('posts.tags.store', post), form)">
+                <div class="flex w-96">
+                    <form-label for="name" />
+                    <form-input id="name" type="text" placeholder="Tag naam" class="mt-1 block w-full" v-model="form.name" required autofocus />
+                    <validation-error :message="form.errors.name" />
+                    
+                    <submit-button class="ml-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        Toevoegen
+                    </submit-button>
+                </div>
+            </form>  
+        </div>
 
         <back-link />
     </layout-master>
@@ -55,6 +71,7 @@
             const form = useForm({
                 title: props.post.title,
                 body: props.post.body,
+                name: null,
             });
 
             return { form };

@@ -25,7 +25,7 @@ class PostController extends Controller
      * Display a listing of the resource.
      */
     public function index(): Response
-    {
+    {   
         return inertia('Posts/Index', [
             'posts' => Post::latest()->get(),
         ]);
