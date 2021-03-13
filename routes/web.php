@@ -22,8 +22,7 @@ Route::get('/about', [PageController::class, 'about'])->name('about');
 
 Route::resource('posts', PostController::class);
 
-Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
-Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tags.show');
+Route::get('/tags/{tag}', TagController::class)->name('tags.show');
 
 Route::get('/search', SearchController::class)->name('search');
 

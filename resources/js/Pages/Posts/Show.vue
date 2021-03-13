@@ -24,11 +24,11 @@
 </template>
 
 <script>
-    import { useForm } from '@inertiajs/inertia-vue3'
-    import BackLink from '@/Components/BackLink.vue'
-    import LayoutMaster from '@/Layouts/Master'
-    import Post from '@/Components/Post'
-    import SubmitButton from '@/Components/Button'
+    import { useForm } from '@inertiajs/inertia-vue3';
+    import BackLink from '@/Components/BackLink.vue';
+    import LayoutMaster from '@/Layouts/Master';
+    import Post from '@/Components/Post';
+    import SubmitButton from '@/Components/Button';
 
     export default {
         components: {

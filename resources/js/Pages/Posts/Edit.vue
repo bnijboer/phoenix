@@ -33,14 +33,14 @@
 </template>
 
 <script>
-    import { useForm } from '@inertiajs/inertia-vue3'
-    import BackLink from '@/Components/BackLink.vue'
-    import FormInput from '@/Components/Input'
-    import FormLabel from '@/Components/Label'
-    import LayoutMaster from '@/Layouts/Master'
-    import PostInput from '@/Components/PostInput'
-    import SubmitButton from '@/Components/Button'
-    import ValidationError from '@/Components/InputError'
+    import { useForm } from '@inertiajs/inertia-vue3';
+    import BackLink from '@/Components/BackLink.vue';
+    import FormInput from '@/Components/Input';
+    import FormLabel from '@/Components/Label';
+    import LayoutMaster from '@/Layouts/Master';
+    import PostInput from '@/Components/PostInput';
+    import SubmitButton from '@/Components/Button';
+    import ValidationError from '@/Components/InputError';
     
     export default {
         components: {

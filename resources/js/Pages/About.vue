@@ -7,7 +7,7 @@
 </template>
 
 <script>
-    import LayoutMaster from '@/Layouts/Master'
+    import LayoutMaster from '@/Layouts/Master';
 
     export default {
         components: {
