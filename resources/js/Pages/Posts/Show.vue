@@ -4,28 +4,31 @@
         
         <post :post="post" />
         
-        <div v-if="$page.props.auth.user" class="flex items-center justify-end mt-4">
-            <inertia-link :href="route('posts.edit', post)" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">
-                Bewerken
-            </inertia-link>
+        <div class="flex justify-between mt-10">
+            <back-link />
             
-            <form @submit.prevent="form.delete(route('posts.destroy', post))">
-                <submit-button class="ml-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Verwijderen
-                </submit-button>
-            </form>
+            <div v-if="$page.props.auth.user" class="flex justify-end">
+                <inertia-link :href="route('posts.edit', post)" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">
+                    Bewerken
+                </inertia-link>
+                
+                <form @submit.prevent="form.delete(route('posts.destroy', post))">
+                    <submit-button class="ml-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        Verwijderen
+                    </submit-button>
+                </form>
+            </div>
         </div>
 
-        <back-link />
     </layout-master>
 </template>
 
 <script>
-    import { useForm } from '@inertiajs/inertia-vue3'
-    import BackLink from '@/Components/BackLink.vue'
-    import LayoutMaster from '@/Layouts/Master'
-    import Post from '@/Components/Post'
-    import SubmitButton from '@/Components/Button'
+    import { useForm } from '@inertiajs/inertia-vue3';
+    import BackLink from '@/Components/BackLink.vue';
+    import LayoutMaster from '@/Layouts/Master';
+    import Post from '@/Components/Post';
+    import SubmitButton from '@/Components/Button';
 
     export default {
         components: {

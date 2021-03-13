@@ -12,7 +12,7 @@
             </div>
         </header>
 
-        <section class="">
+        <section>
             <div class="flex bg-gradient-overlay">
                 <main class="w-full">
                     <div class="py-12">
@@ -26,9 +26,11 @@
                     </div>
                 </main>
 
-                <!-- <section class="hidden md:block w-96">
+                <section class="hidden md:block w-96">
+                    <search-bar />
+                    
                     <biography />
-                </section> -->
+                </section>
             </div>
         </section>
     </div>
@@ -43,11 +45,13 @@
 <script>
     import Biography from '@/Layouts/Partials/Biography';
     import Navigation from '@/Layouts/Partials/Navigation';
+    import SearchBar from '@/Layouts/Partials/SearchBar';
 
     export default {
         components: {
             Biography,
             Navigation,
+            SearchBar,
         },
     }
 </script>

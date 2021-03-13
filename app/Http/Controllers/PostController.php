@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Models\Tag;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Inertia\Response;
 
 class PostController extends Controller
@@ -96,6 +98,12 @@ class PostController extends Controller
         $this->authorize('update', $post);
 
         $post->update($request->validated());
+        
+        if ($request->filled('name') && !$post->tags->containsStrict('name', Str::lower($request->name))) {
+            $tag = Tag::firstOrCreate(['name' => Str::lower($request->name)]);
+            
+            $post->tags()->attach($tag);
+        }
         
         return redirect()->route('posts.show', $post);
     }

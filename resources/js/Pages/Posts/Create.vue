@@ -14,26 +14,26 @@
                 <form-input id="body" type="text" placeholder="Inhoud" class="mt-1 block w-full" v-model="form.body" required autofocus />
                 <validation-error :message="form.errors.body" />
             </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <submit-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            
+            <div class="flex justify-between mt-10">
+                <back-link />
+                
+                <submit-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Aanmaken
                 </submit-button>
             </div>
         </form>
-        
-        <back-link />
     </layout-master>
 </template>
 
 <script>
-    import { useForm } from '@inertiajs/inertia-vue3'
-    import BackLink from '@/Components/BackLink.vue'
-    import FormInput from '@/Components/Input'
-    import FormLabel from '@/Components/Label'
-    import LayoutMaster from '@/Layouts/Master'
-    import SubmitButton from '@/Components/Button'
-    import ValidationError from '@/Components/InputError'
+    import { useForm } from '@inertiajs/inertia-vue3';
+    import BackLink from '@/Components/BackLink.vue';
+    import FormInput from '@/Components/Input';
+    import FormLabel from '@/Components/Label';
+    import LayoutMaster from '@/Layouts/Master';
+    import SubmitButton from '@/Components/Button';
+    import ValidationError from '@/Components/InputError';
     
     export default {
         components: {

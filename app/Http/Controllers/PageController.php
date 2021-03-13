@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Response;
 
-class PagesController extends Controller
+class PageController extends Controller
 {
     public function landing(): Response
     {

@@ -20,6 +20,21 @@ class Post extends Model
         'title',
         'user_id',
     ];
+    
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['tags'];
+    
+    /**
+     * The tags that belong to the post.
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 
     /**
      * The user that owns the posts.
