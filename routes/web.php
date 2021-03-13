@@ -25,4 +25,6 @@ Route::resource('posts', PostController::class);
 Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
 Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tags.show');
 
+Route::get('/search', SearchController::class)->name('search');
+
 require __DIR__.'/auth.php';

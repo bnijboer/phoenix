@@ -27,8 +27,11 @@
                 </main>
 
                 <section class="hidden md:block w-96">
-                    <!-- <biography /> -->
+                    <search-bar />
+                    
                     <tag-list :tags="tags" />
+                    
+                    <biography />
                 </section>
             </div>
         </section>
@@ -44,12 +47,14 @@
 <script>
     import Biography from '@/Layouts/Partials/Biography';
     import Navigation from '@/Layouts/Partials/Navigation';
+    import SearchBar from '@/Layouts/Partials/SearchBar';
     import TagList from '@/Layouts/Partials/TagList';
 
     export default {
         components: {
             Biography,
             Navigation,
+            SearchBar,
             TagList,
         },
     }

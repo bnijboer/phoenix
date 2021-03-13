@@ -2,12 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\SearchRequest;
+use App\Models\Post;
+use Illuminate\Database\Eloquent\Builder;
 
 class SearchController extends Controller
 {
-    public function index(Request $request)
+    public function __invoke(SearchRequest $request)
     {
-        dd($request->all());
+        $searchTerm = $request->get('query');
+        
+        $posts = Post::where('title', 'like', "%$searchTerm%")
+                     ->orWhere('body', 'like', "%$searchTerm%")
+                     ->orWhereHas('tags', function (Builder $query) use ($searchTerm) {
+                        $query->where('name', 'like', "%$searchTerm%");
+                    })
+                     ->latest()
+                     ->get();
+        
+        return inertia('Posts/Index', compact('posts'));
     }
 }
