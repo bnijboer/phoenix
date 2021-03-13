@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,6 +20,13 @@ class Post extends Model
         'title',
         'user_id',
     ];
+    
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['tags'];
     
     /**
      * The tags that belong to the post.

@@ -14,15 +14,15 @@
                 <form-input id="body" type="text" placeholder="Inhoud" class="mt-1 block w-full" v-model="form.body" required autofocus />
                 <validation-error :message="form.errors.body" />
             </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <submit-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            
+            <div class="flex justify-between mt-10">
+                <back-link />
+                
+                <submit-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Aanmaken
                 </submit-button>
             </div>
         </form>
-        
-        <back-link />
     </layout-master>
 </template>
 

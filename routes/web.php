@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\PostTagController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PagesController::class, 'landing'])->name('landing');
-Route::get('/about', [PagesController::class, 'about'])->name('about');
+Route::get('/', [PageController::class, 'landing'])->name('landing');
+Route::get('/about', [PageController::class, 'about'])->name('about');
 
-Route::post('/posts/{post}/tags', [PostTagController::class, 'store'])->name('posts.tags.store');
 Route::resource('posts', PostController::class);
+
+Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
+Route::get('/tags/{tag}', [TagController::class, 'show'])->name('tags.show');
 
 require __DIR__.'/auth.php';

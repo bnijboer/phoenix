@@ -17,4 +17,12 @@ class Tag extends Model
     protected $fillable = [
         'name',
     ];
+
+    /**
+     * The orders for the user.
+     */
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class);
+    }
 }

@@ -26,9 +26,10 @@
                     </div>
                 </main>
 
-                <!-- <section class="hidden md:block w-96">
-                    <biography />
-                </section> -->
+                <section class="hidden md:block w-96">
+                    <!-- <biography /> -->
+                    <tag-list :tags="tags" />
+                </section>
             </div>
         </section>
     </div>
@@ -43,11 +44,13 @@
 <script>
     import Biography from '@/Layouts/Partials/Biography';
     import Navigation from '@/Layouts/Partials/Navigation';
+    import TagList from '@/Layouts/Partials/TagList';
 
     export default {
         components: {
             Biography,
             Navigation,
+            TagList,
         },
     }
 </script>
