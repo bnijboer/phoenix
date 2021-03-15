@@ -5,19 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Comment extends Model
 {
     use HasFactory;
-
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'body',
-        'image',
-        'title',
+        'content',
         'user_id',
     ];
     
@@ -26,24 +24,16 @@ class Post extends Model
      *
      * @var array
      */
-    protected $with = ['tags', 'comments'];
+    protected $with = ['user'];
     
     /**
-     * The comments for the post.
+     * The user that owns the posts.
      */
-    public function comments()
+    public function post()
     {
-        return $this->hasMany(Comment::class);
+        return $this->belongsTo(Post::class);
     }
     
-    /**
-     * The tags that belong to the post.
-     */
-    public function tags()
-    {
-        return $this->belongsToMany(Tag::class);
-    }
-
     /**
      * The user that owns the posts.
      */

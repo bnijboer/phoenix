@@ -19,7 +19,7 @@ class Tag extends Model
     ];
 
     /**
-     * The orders for the user.
+     * The posts for the tag.
      */
     public function posts()
     {

@@ -45,7 +45,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The orders for the user.
+     * The posts by the user.
      */
     public function posts()
     {

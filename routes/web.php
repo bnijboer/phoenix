@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,8 @@ Route::get('/', [PageController::class, 'landing'])->name('landing');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 
 Route::resource('posts', PostController::class);
+
+Route::post('/posts/{post}/comments', [PostCommentController::class, 'store'])->name('comments.store');
 
 Route::get('/tags/{tag}', TagController::class)->name('tags.show');
 

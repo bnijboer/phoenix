@@ -13,19 +13,27 @@
                 </inertia-link>
                 
                 <form @submit.prevent="form.delete(route('posts.destroy', post))">
-                    <submit-button class="ml-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        Verwijderen
-                    </submit-button>
+                    <submit-button class="ml-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Verwijderen</submit-button>
                 </form>
             </div>
         </div>
-
+        
+        <div v-if="$page.props.auth.user" class="mt-8 bg-gray-100 p-4 rounded">
+            <div class="text-center font-semibold">
+                Reacties:
+                
+                <hr class="my-3">
+            </div>
+            
+            <comments :post="post" />
+        </div>
     </layout-master>
 </template>
 
 <script>
     import { useForm } from '@inertiajs/inertia-vue3';
     import BackLink from '@/Components/BackLink.vue';
+    import Comments from '@/Components/Comments'
     import LayoutMaster from '@/Layouts/Master';
     import Post from '@/Components/Post';
     import SubmitButton from '@/Components/Button';
@@ -33,6 +41,7 @@
     export default {
         components: {
             BackLink,
+            Comments,
             LayoutMaster,
             Post,
             SubmitButton,
