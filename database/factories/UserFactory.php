@@ -29,7 +29,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'is_admin' => false,
             'is_editor' => false,
-            'password' => Hash::make('test'),
+            'password' => Hash::make(env('MAIN_USER_PASSWORD')),
             'remember_token' => Str::random(10),
         ];
     }
@@ -42,7 +42,7 @@ class UserFactory extends Factory
     public function admin(): UserFactory
     {
         return $this->state([
-            'name' => 'Brendan',
+            'name' => 'TestAdmin',
             'email' => 'admin@phoenix.test',
             'is_admin' => true,
         ]);
@@ -56,7 +56,7 @@ class UserFactory extends Factory
     public function editor(): UserFactory
     {
         return $this->state([
-            'name' => 'Hermine',
+            'name' => 'TestEditor',
             'email' => 'editor@phoenix.test',
             'is_editor' => true,
         ]);

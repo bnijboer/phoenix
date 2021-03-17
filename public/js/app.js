@@ -16511,6 +16511,9 @@ __webpack_require__.r(__webpack_exports__);
       return (0,date_fns__WEBPACK_IMPORTED_MODULE_0__.default)((0,date_fns__WEBPACK_IMPORTED_MODULE_1__.default)(this.comment.created_at), new Date(), {
         locale: date_fns_locale__WEBPACK_IMPORTED_MODULE_2__.nl
       });
+    },
+    remove: function remove() {
+      this.$emit('remove');
     }
   }
 });
@@ -16562,6 +16565,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    del: function del(comment, index) {
+      var _this = this;
+
+      var url = route('comments.destroy', [this.post, comment]);
+      axios["delete"](url).then(function () {
+        _this.post.comments.splice(index, 1);
+      });
+    },
     submit: function submit() {
       this.form.post(route('comments.store', this.post));
       this.$refs.comment.reset();
@@ -17603,7 +17614,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "flex justify-between text-gray-600 text-sm mb-3"
+  "class": "flex justify-between text-gray-600 text-sm"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("i", {
@@ -17616,8 +17627,18 @@ var _hoisted_3 = {
   "class": "italic"
 };
 var _hoisted_4 = {
-  "class": "text-gray-800 mb-3"
+  "class": "text-gray-800 my-3"
 };
+var _hoisted_5 = {
+  "class": "flex justify-end text-gray-600 text-sm mb-3"
+};
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("i", {
+  "class": "fas fa-trash"
+}, null, -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.comment.user.name), 1
   /* TEXT */
@@ -17625,7 +17646,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.comment.content), 1
   /* TEXT */
-  )], 64
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.remove && $options.remove.apply($options, arguments);
+    }, ["prevent"]))
+  }, [_hoisted_6])])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -17676,14 +17701,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_submit_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("submit-button");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [$props.post.comments.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.post.comments, function (comment) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [$props.post.comments.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.post.comments, function (comment, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
       key: comment.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_comment, {
-      comment: comment
+      comment: comment,
+      onRemove: function onRemove($event) {
+        return $options.del(comment, index);
+      }
     }, null, 8
     /* PROPS */
-    , ["comment"]), _hoisted_2]);
+    , ["comment", "onRemove"]), _hoisted_2]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_3, "Er zijn nog geen reacties.")), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {

@@ -69,10 +69,6 @@ class PostController extends Controller
      */
     public function show(Post $post): Response
     {
-        // return inertia('Posts/Show', [
-        //     'post' => $post->with(['comments', 'tags'])->get(),
-        // ]);
-        
         return inertia('Posts/Show', compact('post'));
     }
 
@@ -103,6 +99,7 @@ class PostController extends Controller
 
         $post->update($request->validated());
         
+        // Handles (optional) blogpost tags.
         if ($request->filled('name') && !$post->tags->containsStrict('name', Str::lower($request->name))) {
             $tag = Tag::firstOrCreate(['name' => Str::lower($request->name)]);
             

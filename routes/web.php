@@ -24,6 +24,7 @@ Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::resource('posts', PostController::class);
 
 Route::post('/posts/{post}/comments', [PostCommentController::class, 'store'])->name('comments.store');
+Route::delete('/posts/{post}/comments/{comment}', [PostCommentController::class, 'destroy'])->name('comments.destroy');
 
 Route::get('/tags/{tag}', TagController::class)->name('tags.show');
 
