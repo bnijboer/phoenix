@@ -1,6 +1,6 @@
-### "The Goddess In Me" (Working title: "Phoenix") [WIP]
+## "The Goddess In Me" (Working title: "Phoenix") [WIP]
 
-## Description
+### Description
 
 This is a blog I am currently creating for my mother.
 I aim to make this a Inertia-powered SPA. The reason for this is because I want to get more experience using Vue, and I found Inertia.js to be a promising link between Laravel and Vue.
