@@ -12,7 +12,7 @@ I aim to make this a Inertia-powered SPA, as I want to get more experience using
 
 ### Instructions
 
-- `git clone` repo
+- `git clone https://github.com/bnijboer/phoenix.git`
 - `npm install`
 - `composer install`
 - `composer update`
