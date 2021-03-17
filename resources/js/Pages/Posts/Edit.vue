@@ -3,11 +3,11 @@
         <template #header>Bericht bewerken</template>
 
         <form @submit.prevent="form.patch(route('posts.update', post), form)">
-            <post-input field="title"
-                        type="text"
-                        v-model="form.title"
-                        placeholder="Titel"
-                        :message="form.errors.body" />
+            <div>
+                <form-label for="title" />
+                <form-input id="title" type="text" placeholder="Titel" class="mt-1 block w-full" v-model="form.title" required />
+                <validation-error :message="form.errors.title" />
+            </div>
             
             <div class="mt-4">
                 <form-label for="body" />
@@ -38,7 +38,6 @@
     import FormInput from '@/Components/Input';
     import FormLabel from '@/Components/Label';
     import LayoutMaster from '@/Layouts/Master';
-    import PostInput from '@/Components/PostInput';
     import SubmitButton from '@/Components/Button';
     import ValidationError from '@/Components/InputError';
     
