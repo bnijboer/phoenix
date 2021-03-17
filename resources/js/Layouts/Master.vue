@@ -29,7 +29,7 @@
                 <section class="hidden md:block w-96">
                     <search-bar />
                     
-                    <biography />
+                    <!-- <biography /> -->
                 </section>
             </div>
         </section>
