@@ -16,4 +16,11 @@ class PostCommentController extends Controller
         
         return redirect()->route('posts.show', $post);
     }
+    
+    public function destroy(Post $post, Comment $comment)
+    {
+        // $this->authorize('destroy', $comment);
+        
+        $comment->delete();
+    }
 }

@@ -1,7 +1,7 @@
 <template>
         <div v-if="post.comments.length">
-            <div v-for="comment in post.comments" :key="comment.id">
-                <comment :comment="comment" />
+            <div v-for="(comment, index) in post.comments" :key="comment.id">
+                <comment :comment="comment" @remove="del(comment, index)" />
 
                 <hr class="my-3">
             </div>
@@ -54,6 +54,14 @@
         },
         
         methods: {
+            del(comment, index) {
+                const url = route('comments.destroy', [this.post, comment]);
+
+                axios.delete(url).then(() => {
+                    this.post.comments.splice(index, 1);
+                });
+            },
+            
             submit() {
                 this.form.post(route('comments.store', this.post));
                 

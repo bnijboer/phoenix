@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-between text-gray-600 text-sm mb-3">
+    <div class="flex justify-between text-gray-600 text-sm">
         <div>
             <i class="fas fa-user mr-1"></i> {{ comment.user.name }}
         </div>
@@ -7,7 +7,13 @@
         <div class="italic">{{ formattedDate }} geleden</div>
     </div>
     
-    <div class="text-gray-800 mb-3">{{ comment.content }}</div>
+    <div class="text-gray-800 my-3">{{ comment.content }}</div>
+    
+    <div class="flex justify-end text-gray-600 text-sm mb-3">
+        <button @click.prevent="remove">
+            <i class="fas fa-trash"/>
+        </button>
+    </div>
 </template>
 
 <script>
@@ -26,6 +32,10 @@
                     new Date(),
                     { locale: nl },
                 );
+            },
+            
+            remove() {
+                this.$emit('remove');
             },
         }
     }
