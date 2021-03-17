@@ -6,7 +6,9 @@ This is a blog I am currently creating for my mother.
 
 I aim to make this a Inertia-powered SPA. The reason for this is because I want to get more experience using Vue, and I found Inertia.js to be a powerful link between Laravel and Vue.
 
-**Note**: this project is far from complete (especially in terms of styling), but I decided to set it to public to showcase my current understanding of Laravel and Vue.
+**Notes**:
+- This project is far from complete (especially in terms of styling), but I decided to set it to public to showcase my current understanding of Laravel and Vue.
+- I disabled the ability for users to register an account for now, as I am still considering whether I want other users apart from me (the admin) and my mother (the only editor) to own an account. I may enable registration in the future though.
 
 ### Instructions
 
