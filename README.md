@@ -23,8 +23,13 @@ I aim to make this a Inertia-powered SPA. The reason for this is because I want 
 - `npm run dev`
 - `php artisan serve`
 - Login using one of the following accounts:
+
 `admin@phoenix.test`
+
 `editor@phoenix.test`
+
 `dummy@phoenix.test`
+
 Password: `test`
+
 **Note**: Use the admin account for full access.
