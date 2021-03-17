@@ -14,8 +14,7 @@ I aim to make this a Inertia-powered SPA, as I want to get more experience using
 
 - `git clone https://github.com/bnijboer/phoenix.git`
 - `npm install`
-- `composer install`
-- `composer update`
+- `composer install && composer update`
 - Rename `.env.example` to `.env`
 - `php artisan key:generate`
 - Create database `phoenix`
