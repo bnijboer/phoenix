@@ -20,7 +20,6 @@ I aim to make this a Inertia-powered SPA. The reason for this is because I want 
 - `php artisan key:generate`
 - Create database `phoenix`
 - Add database credentials to `.env`
-- Add `MAIN_USER_PASSWORD=test` to `.env`
 - `php artisan migrate:fresh --seed`
 - `npm run dev`
 - `php artisan serve`
