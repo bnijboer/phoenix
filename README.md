@@ -8,7 +8,7 @@ I aim to make this a Inertia-powered SPA, as I want to get more experience using
 
 **Notes**:
 - This project is far from complete (especially in terms of styling), but I decided to set it to public to showcase my current understanding of Laravel and Vue.
-- I disabled the ability for users to register an account for now, as I am still contemplating if I want other users apart from me (the admin) and my mother (the sole editor) to own an account. I may enable registration in the future though, considering I'd like comments on blogposts to be allowed for registered users only.
+- I disabled the ability for users to register an account for now, as I am still contemplating if I want other users apart from me (the admin) and my mother (the sole editor) to own an account. I might enable this in the future to allow registered users to comment on posts.
 
 ### Instructions
 
