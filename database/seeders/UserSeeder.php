@@ -15,8 +15,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->create();
-
         User::factory()
             ->admin()
             ->create();
@@ -25,5 +23,7 @@ class UserSeeder extends Seeder
             ->editor()
             ->has(Post::factory()->count(10))
             ->create();
+            
+        User::factory()->create();
     }
 }
