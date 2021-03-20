@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class PostCommentController extends Controller
 {
@@ -12,14 +13,18 @@ class PostCommentController extends Controller
     {
         $this->authorize('create', Comment::class);
         
-        $post->comments()->create($request->all());
+        $comment = $post->comments()->make($request->all());
+        $comment->user_id = Auth::id();
+        $comment->save();
         
-        return redirect()->route('posts.show', $post);
+        $comment->user = Auth::user();
+        
+        return $comment->toJson();
     }
     
     public function destroy(Post $post, Comment $comment)
     {
-        // $this->authorize('destroy', $comment);
+        $this->authorize('destroy', $comment);
         
         $comment->delete();
     }

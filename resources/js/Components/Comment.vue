@@ -9,7 +9,7 @@
     
     <div class="text-gray-800 my-3">{{ comment.content }}</div>
     
-    <div class="flex justify-end text-gray-600 text-sm mb-3">
+    <div v-if="comment.user.id === $page.props.auth.user.id" class="flex justify-end text-gray-600 text-sm mb-3">
         <button @click.prevent="remove">
             <i class="fas fa-trash"/>
         </button>
@@ -24,6 +24,8 @@
         props: {
             comment: Object,
         },
+        
+        inheritAttrs: false,
         
         computed: {
             formattedDate() {
