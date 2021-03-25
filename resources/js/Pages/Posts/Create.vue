@@ -27,6 +27,18 @@
                 <validation-error :message="form.errors.keywords" />
             </div>
             
+            <div class="mt-4">
+                <form-label for="date-picker" />
+                <form-input
+                    id="date-picker"
+                    type="date"
+                    class="mt-1 block w-full"
+                    :min="min"
+                    v-model="form.published_at"
+                    required />
+                <validation-error :message="form.errors.published_at" />
+            </div>
+            
             <div class="flex justify-between mt-10">
                 <back-link />
                 
@@ -40,6 +52,7 @@
 
 <script>
     import { useForm } from '@inertiajs/inertia-vue3';
+    import { format } from 'date-fns'
     import BackLink from '@/Components/BackLink.vue';
     import FormInput from '@/Components/Input';
     import FormLabel from '@/Components/Label';
@@ -65,9 +78,16 @@
                 body: null,
                 image: null,
                 keywords: null,
+                published_at: format(new Date(), 'yyyy-MM-dd'),
             });
 
             return { form };
+        },
+        
+        computed: {
+            min() {
+                return format(new Date(), 'yyyy-MM-dd');
+            }
         },
 
         methods: {

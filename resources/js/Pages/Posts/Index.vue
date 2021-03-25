@@ -18,7 +18,6 @@
             </div>
         </div>
         <div v-else class="text-center">Er zijn geen blogposts gevonden.</div>
-
     </layout-master>
 </template>
 
