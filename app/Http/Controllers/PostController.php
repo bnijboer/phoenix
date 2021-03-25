@@ -93,7 +93,10 @@ class PostController extends Controller
     {
         $this->authorize('update', $post);
 
-        return inertia('Posts/Edit', compact('post'));
+        return inertia('Posts/Edit', [
+            'post' => $post,
+            'keywords' => $post->tags->implode('keyword', ', '),
+        ]);
     }
 
     /**
@@ -111,7 +114,7 @@ class PostController extends Controller
         
         // Handles (optional) blogpost tags.
         if ($request->filled('keywords')) {
-            $keywords = explode('# ', $request->keywords);
+            $keywords = explode(', ', $request->keywords);
             
             foreach ($keywords as $keyword) {
                 if (! $post->tags->containsStrict('keyword', strtolower($keyword))) {

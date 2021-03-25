@@ -1,8 +1,9 @@
 <template>
     <div class="font-semibold mb-3">{{ post.title }}</div>
     
-    <div v-if="unpublished" class="text-gray-600 italic mb-3">Wordt gepubliceerd op {{ date }}</div>
-    <div v-else class="text-gray-600 italic mb-3">{{ date }}</div>
+    <div class="text-gray-600 italic mb-3">
+        <span v-if="unpublished">Wordt gepubliceerd op </span>{{ date }}
+    </div>
     
     <div class="text-gray-800 mb-3">{{ post.body }}</div>
     

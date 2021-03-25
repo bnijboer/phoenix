@@ -15,11 +15,11 @@
                 <validation-error :message="form.errors.body" />
             </div>
             
-            <!-- <div class="flex ml-auto w-96 mt-4">
+            <div class="flex ml-auto w-96 mt-4">
                 <form-label for="keywords" />
                 <form-input id="keywords" type="text" placeholder="Tags" class="mt-1 block w-full" v-model="form.keywords" />
                 <validation-error :message="form.errors.keywords" />
-            </div> -->
+            </div>
 
             <div class="flex justify-between mt-10">
                 <back-link />
@@ -55,14 +55,14 @@
         
         props: {
             post: Object,
+            keywords: String,
         },
         
         setup (props) {
             const form = useForm({
                 title: props.post.title,
                 body: props.post.body,
-                name: null,
-                // keywords: props.post.tag.keyword.join(', '),
+                keywords: props.keywords,
             });
 
             return { form };
