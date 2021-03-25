@@ -21,6 +21,12 @@
                 <validation-error :message="form.errors.image" />
             </div>
             
+            <div class="mt-4">
+                <form-label for="keywords" />
+                <form-input id="keywords" type="text" placeholder="Tags: Honden, Happy, Hen" class="mt-1 block w-full" v-model="form.keywords" />
+                <validation-error :message="form.errors.keywords" />
+            </div>
+            
             <div class="flex justify-between mt-10">
                 <back-link />
                 
@@ -58,6 +64,7 @@
                 title: null,
                 body: null,
                 image: null,
+                keywords: null,
             });
 
             return { form };

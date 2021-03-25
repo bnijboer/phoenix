@@ -27,6 +27,7 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'body' => $this->faker->text,
+            'is_published' => true,
         ];
     }
 }

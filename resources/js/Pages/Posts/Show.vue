@@ -7,7 +7,7 @@
         <div class="flex justify-between mt-10">
             <back-link />
             
-            <div v-if="$page.props.auth.user" class="flex justify-end">
+            <div v-if="$page.props.auth.user.is_editor || $page.props.auth.user.is_admin" class="flex justify-end">
                 <inertia-link :href="route('posts.edit', post)" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">
                     Bewerken
                 </inertia-link>

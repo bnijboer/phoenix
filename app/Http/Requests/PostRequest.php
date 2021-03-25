@@ -22,12 +22,12 @@ class PostRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
+    {        
         return [
             'title' => ['required', 'string'],
             'body' => ['required', 'string'],
-            'name' => ['string', 'nullable'],
-            'image' => ['image'],
+            'keywords' => ['string', 'nullable'],
+            'image' => ['image', 'nullable'],
         ];
     }
 }

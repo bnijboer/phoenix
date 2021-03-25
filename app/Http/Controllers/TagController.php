@@ -8,8 +8,6 @@ class TagController extends Controller
 {
     public function __invoke(Tag $tag)
     {
-        return inertia('Posts/Index', [
-            'posts' => $tag->posts,
-        ]);
+        return inertia('Posts/Index', ['posts' => $tag->posts]);
     }
 }

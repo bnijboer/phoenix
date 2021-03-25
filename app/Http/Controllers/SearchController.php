@@ -15,7 +15,7 @@ class SearchController extends Controller
         $posts = Post::where('title', 'like', "%$searchTerm%")
                      ->orWhere('body', 'like', "%$searchTerm%")
                      ->orWhereHas('tags', function (Builder $query) use ($searchTerm) {
-                        $query->where('name', 'like', "%$searchTerm%");
+                        $query->where('keyword', 'like', "%$searchTerm%");
                     })
                      ->latest()
                      ->get();

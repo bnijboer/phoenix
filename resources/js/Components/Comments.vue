@@ -73,6 +73,8 @@
                 axios.post(url, form).then((response) => {
                     this.comments.push(response.data);
                     this.$refs.comment.reset();
+                }).catch(error => {
+                    console.log(error.response.data.errors.content);
                 });
             },
         },

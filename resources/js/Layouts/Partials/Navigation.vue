@@ -5,7 +5,7 @@
             <!-- Application Logo -->
             <div class="flex-shrink-0 flex items-center pl-4 sm:pl-6 lg:pl-8">
                 <inertia-link :href="route('landing')">
-                    <breeze-application-logo class="block h-9 w-auto" />
+                    <application-logo class="block h-9 w-auto" />
                 </inertia-link>
             </div>
             
@@ -19,7 +19,7 @@
                     Over mij
                 </breeze-nav-link>
 
-                <breeze-nav-link v-if="$page.props.auth.user" :href="route('posts.create')" :active="route().current('posts.create')">
+                <breeze-nav-link v-if="$page.props.auth.user.is_editor || $page.props.auth.user.is_admin" :href="route('posts.create')" :active="route().current('posts.create')">
                     Nieuw bericht
                 </breeze-nav-link>
             </div>
@@ -72,7 +72,7 @@
                 Over mij
             </breeze-responsive-nav-link>
 
-            <breeze-responsive-nav-link v-if="$page.props.auth.user" :href="route('posts.create')" :active="route().current('posts.create')">
+            <breeze-responsive-nav-link v-if="$page.props.auth.user.is_editor || $page.props.auth.user.is_admin" :href="route('posts.create')" :active="route().current('posts.create')">
                 Nieuw bericht
             </breeze-responsive-nav-link>
         </div>
@@ -93,7 +93,7 @@
 </template>
 
 <script>
-    import BreezeApplicationLogo from '@/Components/ApplicationLogo';
+    import ApplicationLogo from '@/Components/ApplicationLogo';
     import BreezeDropdown from '@/Components/Dropdown';
     import BreezeDropdownLink from '@/Components/DropdownLink';
     import BreezeNavLink from '@/Components/NavLink';
@@ -101,7 +101,7 @@
 
     export default {
         components: {
-            BreezeApplicationLogo,
+            ApplicationLogo,
             BreezeDropdown,
             BreezeDropdownLink,
             BreezeNavLink,

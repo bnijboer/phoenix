@@ -19,8 +19,19 @@ class Post extends Model
     protected $fillable = [
         'body',
         'image',
+        'is_published',
+        'published_at',
         'title',
         'user_id',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_published' => 'boolean',
     ];
     
     /**
@@ -28,7 +39,7 @@ class Post extends Model
      *
      * @var array
      */
-    protected $with = ['tags', 'comments'];
+    protected $with = ['comments', 'tags'];
     
     /**
      * The comments for the post.
@@ -52,5 +63,15 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'title';
     }
 }

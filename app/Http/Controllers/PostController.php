@@ -7,8 +7,6 @@ use App\Models\Post;
 use App\Models\Tag;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 use Inertia\Response;
 
 class PostController extends Controller
@@ -28,9 +26,7 @@ class PostController extends Controller
      */
     public function index(): Response
     {
-        return inertia('Posts/Index', [
-            'posts' => Post::latest()->get(),
-        ]);
+        return inertia('Posts/Index', ['posts' => Post::latest()->get()]);
     }
 
     /**
@@ -56,7 +52,19 @@ class PostController extends Controller
     {
         $this->authorize('create', Post::class);
         
-        $post = Auth::user()->posts()->create($request->validated());
+        $post = $request->user()->posts()->create($request->except('keywords'));
+        
+        // Handles (optional) blogpost tags.
+        if ($request->filled('keywords')) {
+            $keywords = explode(', ', $request->keywords);
+            
+            foreach ($keywords as $keyword) {
+                if (! $post->tags->containsStrict('keyword', strtolower($keyword))) {
+                    $tag = Tag::firstOrCreate(['keyword' => strtolower($keyword)]);
+                    $post->tags()->attach($tag);
+                }
+            }
+        }
         
         return redirect()->route('posts.show', $post);
     }
@@ -100,10 +108,15 @@ class PostController extends Controller
         $post->update($request->validated());
         
         // Handles (optional) blogpost tags.
-        if ($request->filled('name') && !$post->tags->containsStrict('name', Str::lower($request->name))) {
-            $tag = Tag::firstOrCreate(['name' => Str::lower($request->name)]);
+        if ($request->filled('keywords')) {
+            $keywords = explode('# ', $request->keywords);
             
-            $post->tags()->attach($tag);
+            foreach ($keywords as $keyword) {
+                if (! $post->tags->containsStrict('keyword', strtolower($keyword))) {
+                    $tag = Tag::firstOrCreate(['keyword' => strtolower($keyword)]);
+                    $post->tags()->attach($tag);
+                }
+            }
         }
         
         return redirect()->route('posts.show', $post);
