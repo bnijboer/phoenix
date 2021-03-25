@@ -24,13 +24,16 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'Dummy',
+            'username' => 'dummy',
+            'first_name' => 'Dummy',
+            'last_name' => 'Test',
             'email' => 'dummy@phoenix.test',
             'email_verified_at' => now(),
-            'is_admin' => false,
-            'is_editor' => false,
             'password' => Hash::make(env('MAIN_USER_PASSWORD', 'test')),
             'remember_token' => Str::random(10),
+            'avatar' => asset('images/default-avatar.jpeg'),
+            'is_admin' => false,
+            'is_editor' => false,
         ];
     }
 
@@ -42,7 +45,9 @@ class UserFactory extends Factory
     public function admin(): UserFactory
     {
         return $this->state([
-            'name' => 'TestAdmin',
+            'username' => 'testadmin',
+            'first_name' => 'Test',
+            'last_name' => 'Admin',
             'email' => 'admin@phoenix.test',
             'is_admin' => true,
         ]);
@@ -56,7 +61,9 @@ class UserFactory extends Factory
     public function editor(): UserFactory
     {
         return $this->state([
-            'name' => 'TestEditor',
+            'username' => 'testeditor',
+            'first_name' => 'Test',
+            'last_name' => 'Editor',
             'email' => 'editor@phoenix.test',
             'is_editor' => true,
         ]);

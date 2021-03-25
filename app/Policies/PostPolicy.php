@@ -14,11 +14,13 @@ class PostPolicy
      * Perform pre-authorization checks.
      *
      * @param  User  $user
-     * @return bool
+     * @return mixed
      */
-    public function before(User $user): bool
+    public function before(User $user)
     {
-        return $user->isAdministrator();
+        if ($user->isAdministrator()) {
+            return true;
+        }
     }
 
     /**

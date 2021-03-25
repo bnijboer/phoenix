@@ -1,15 +1,17 @@
 <template>
     <div class="flex justify-between text-gray-600 text-sm">
-        <div>
-            <i class="fas fa-user mr-1"></i> {{ comment.user.name }}
+        <div class="flex">
+            <img :src="comment.user.avatar" class="rounded-full mr-2" height="25" width="25" />
+            
+            <div class="font-bold pt-1">{{ comment.user.username }}</div>   
         </div>
         
         <div class="italic">{{ formattedDate }} geleden</div>
     </div>
     
-    <div class="text-gray-800 my-3">{{ comment.content }}</div>
+    <div class="text-gray-800 my-5">{{ comment.content }}</div>
     
-    <div v-if="comment.user.id === $page.props.auth.user.id" class="flex justify-end text-gray-600 text-sm mb-3">
+    <div v-if="comment.user.id === user.id" class="flex justify-end text-gray-600 text-sm mb-3">
         <button @click.prevent="remove">
             <i class="fas fa-trash"/>
         </button>
@@ -38,6 +40,10 @@
             
             remove() {
                 this.$emit('remove');
+            },
+            
+            user() {
+                return this.$page.props.auth.user;
             },
         }
     }

@@ -14,34 +14,13 @@ class CommentPolicy
      * Perform pre-authorization checks.
      *
      * @param  User  $user
-     * @return bool
-     */
-    public function before(User $user): bool
-    {
-        return $user->isAdministrator();
-    }
-    
-    /**
-     * Determine whether the user can view any models.
-     *
-     * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function before(User $user)
     {
-        return true;
-    }
-
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Comment  $comment
-     * @return mixed
-     */
-    public function view(User $user, Comment $comment)
-    {
-        return true;
+        if ($user->isAdministrator()) {
+            return true;
+        }
     }
 
     /**
@@ -88,7 +67,7 @@ class CommentPolicy
      */
     public function restore(User $user, Comment $comment)
     {
-        return true;
+        return false;
     }
 
     /**
@@ -100,6 +79,6 @@ class CommentPolicy
      */
     public function forceDelete(User $user, Comment $comment)
     {
-        return true;
+        return false;
     }
 }

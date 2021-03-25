@@ -19,11 +19,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'avatar',
+        'first_name',
         'email',
+        'last_name',
         'is_admin',
         'is_editor',
-        'name',
         'password',
+        'username',
     ];
 
     /**
@@ -54,4 +57,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    // public function getAvatarAttribute($value)
+    // {
+    //     if (isset($value)) {
+    //         return asset('storage/' . $value);
+    //     } else {
+    //         return asset('images/default-avatar.jpeg');
+    //     }
+    // }
 }

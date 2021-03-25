@@ -6,7 +6,14 @@
                 <hr class="my-3">
             </div>
         </div>
-        <div v-else class="text-center">Er zijn nog geen reacties.</div>
+        <div v-else class="text-center">
+            <div v-if="!owner">
+                Hé {{ user.username }}, wat vind je van deze blogpost?
+            </div>
+            <div v-else>
+                Er zijn nog geen reacties.
+            </div>
+        </div>
         
         <form class="mt-5" @submit.prevent="submit(form)" ref="comment">
             <div>
@@ -55,6 +62,14 @@
         computed: {
             comments() {
                 return this.post.comments;
+            },
+            
+            owner() {
+                return this.$page.props.auth.user.is_editor || this.$page.props.auth.user.is_admin;
+            },
+            
+            user() {
+                return this.$page.props.auth.user;
             },
         },
         
