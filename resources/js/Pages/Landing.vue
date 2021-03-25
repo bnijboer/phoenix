@@ -5,12 +5,22 @@
                 Blog
             </inertia-link>
 
-            <inertia-link v-if="! $page.props.auth.user" :href="route('login')" class="ml-4 text-sm text-gray-700 underline">
+            <inertia-link v-if="!user" :href="route('login')" class="ml-4 text-sm text-gray-700 underline">
                 Log in
             </inertia-link>
         </div>
     </div>
 </template>
+
+<script>
+    export default {
+        computed: {
+            user() {
+                return this.$page.props.auth.user;
+            },
+        }
+    }
+</script>
 
 <style scoped>
     .bg-gray-100 {
@@ -30,9 +40,3 @@
         }
     }
 </style>
-
-<script>
-    export default {
-        //
-    }
-</script>

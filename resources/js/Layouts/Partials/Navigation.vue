@@ -19,19 +19,19 @@
                     Over mij
                 </breeze-nav-link>
 
-                <breeze-nav-link v-if="$page.props.auth.user.is_editor || $page.props.auth.user.is_admin" :href="route('posts.create')" :active="route().current('posts.create')">
+                <breeze-nav-link v-if="owner" :href="route('posts.create')" :active="route().current('posts.create')">
                     Nieuw bericht
                 </breeze-nav-link>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Settings Dropdown -->
-                <div v-if="$page.props.auth.user" class="ml-3 relative">
+                <div v-if="user" class="ml-3 relative">
                     <breeze-dropdown align="right" width="48">
                         <template #trigger>
                         <span class="inline-flex rounded-md">
                             <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                {{ $page.props.auth.user.name }}
+                                {{ user.name }}
 
                                 <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -72,15 +72,15 @@
                 Over mij
             </breeze-responsive-nav-link>
 
-            <breeze-responsive-nav-link v-if="$page.props.auth.user.is_editor || $page.props.auth.user.is_admin" :href="route('posts.create')" :active="route().current('posts.create')">
+            <breeze-responsive-nav-link v-if="owner" :href="route('posts.create')" :active="route().current('posts.create')">
                 Nieuw bericht
             </breeze-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
-        <div v-if="$page.props.auth.user" class="pt-4 pb-1 border-t border-gray-200">
+        <div v-if="user" class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">
-                <div class="font-medium text-base text-gray-800">{{ $page.props.auth.user.name }}</div>
+                <div class="font-medium text-base text-gray-800">{{ user.name }}</div>
             </div>
 
             <div class="mt-3 space-y-1">
@@ -113,5 +113,15 @@
                 showingNavigationDropdown: false,
             }
         },
+        
+        computed: {
+            owner() {
+                return this.$page.props.auth.user.is_editor || this.$page.props.auth.user.is_admin;
+            },
+            
+            user() {
+                return this.$page.props.auth.user;
+            },
+        }
     }
 </script>
