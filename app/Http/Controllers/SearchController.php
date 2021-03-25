@@ -17,8 +17,8 @@ class SearchController extends Controller
                      ->orWhereHas('tags', function (Builder $query) use ($searchTerm) {
                         $query->where('keyword', 'like', "%$searchTerm%");
                     })
-                     ->latest()
-                     ->get();
+                    ->latest()
+                    ->get();
         
         return inertia('Posts/Index', compact('posts'));
     }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\PublishedScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,11 +36,33 @@ class Post extends Model
     ];
     
     /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'deleted_at',
+        'published_at',
+        'updated_at',
+    ];
+    
+    /**
      * The relationships that should always be loaded.
      *
      * @var array
      */
     protected $with = ['comments', 'tags'];
+    
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::addGlobalScope(new PublishedScope);
+    }
     
     /**
      * The comments for the post.

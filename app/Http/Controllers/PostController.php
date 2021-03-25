@@ -26,7 +26,9 @@ class PostController extends Controller
      */
     public function index(): Response
     {
-        return inertia('Posts/Index', ['posts' => Post::latest()->get()]);
+        $posts = Post::latest()->get();
+        
+        return inertia('Posts/Index', compact('posts'));
     }
 
     /**

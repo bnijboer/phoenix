@@ -2,19 +2,23 @@
     <layout-master>
         <template #header>The Goddess In Me</template>
         
-        <div v-for="post in posts" :key="post.id">
-            <inertia-link :href="route('posts.show', post)">
-                <div class="preview">
-                    <post :post="post" />
-                    
-                    <div class="read-more">
-                        <span>Meer lezen<i class="fas fa-angle-double-right text-gray-600 ml-2" /></span>
+        <div v-if="posts.length">
+            <div v-for="post in posts" :key="post.id">
+                <inertia-link :href="route('posts.show', post)">
+                    <div class="preview">
+                        <post :post="post" />
+                        
+                        <div class="read-more">
+                            <span>Meer lezen<i class="fas fa-angle-double-right text-gray-600 ml-2" /></span>
+                        </div>
                     </div>
-                </div>
-            </inertia-link>
+                </inertia-link>
 
-            <hr class="my-5">
+                <hr class="my-5">
+            </div>
         </div>
+        <div v-else class="text-center">Er zijn geen blogposts gevonden.</div>
+
     </layout-master>
 </template>
 
