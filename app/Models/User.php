@@ -24,7 +24,9 @@ class User extends Authenticatable
         'email',
         'last_name',
         'is_admin',
+        'is_banned',
         'is_editor',
+        'is_subscribed',
         'password',
         'username',
     ];
@@ -47,7 +49,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'is_admin' => 'boolean',
+        'is_banned' => 'boolean',
         'is_editor' => 'boolean',
+        'is_subscribed' => 'boolean',
     ];
 
     /**

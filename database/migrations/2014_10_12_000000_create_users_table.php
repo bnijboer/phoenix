@@ -24,6 +24,8 @@ class CreateUsersTable extends Migration
             $table->text('avatar')->nullable();
             $table->boolean('is_admin')->default('0');
             $table->boolean('is_editor')->default('0');
+            $table->boolean('is_subscribed')->default('0');
+            $table->boolean('is_banned')->default('0');
             $table->rememberToken();
             $table->timestamps();
         });
