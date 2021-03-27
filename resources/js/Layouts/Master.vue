@@ -1,8 +1,6 @@
 <template>
     <div class="wrapper">
-        <nav class="bg-white">
-            <navigation />
-        </nav>
+        <top-bar />
 
         <header class="flex bg-white pt-8">
             <div v-if="$slots.header" class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -11,6 +9,10 @@
                 </h2>
             </div>
         </header>
+        
+        <nav class="bg-white">
+            <navigation />
+        </nav>
 
         <section>
             <div class="flex bg-gradient-overlay">
@@ -26,11 +28,9 @@
                     </div>
                 </main>
 
-                <section class="hidden md:block w-96">
-                    <search-bar />
-                    
+                <!-- <section class="hidden md:block w-96"> -->
                     <!-- <biography /> -->
-                </section>
+                <!-- </section> -->
             </div>
         </section>
     </div>
@@ -45,13 +45,13 @@
 <script>
     import Biography from '@/Layouts/Partials/Biography';
     import Navigation from '@/Layouts/Partials/Navigation';
-    import SearchBar from '@/Layouts/Partials/SearchBar';
+    import TopBar from '@/Layouts/Partials/TopBar';
 
     export default {
         components: {
             Biography,
             Navigation,
-            SearchBar,
+            TopBar,
         },
     }
 </script>
