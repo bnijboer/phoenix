@@ -18,7 +18,7 @@ class PostPolicy
      */
     public function before(User $user)
     {
-        if ($user->isAdministrator()) {
+        if ($user->is_admin) {
             return true;
         }
     }
@@ -31,7 +31,7 @@ class PostPolicy
      */
     public function create(User $user): bool
     {
-        return $user->isEditor();
+        return $user->is_editor;
     }
 
     /**
@@ -56,5 +56,29 @@ class PostPolicy
     public function delete(User $user, Post $post): bool
     {
         return $user->id === $post->user_id;
+    }
+
+    /**
+     * Determine whether the user can restore the model.
+     *
+     * @param User $user
+     * @param Post $post
+     * @return bool
+     */
+    public function restore(User $user, Post $post)
+    {
+        return false;
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     *
+     * @param User $user
+     * @param Post $post
+     * @return bool
+     */
+    public function forceDelete(User $user, Post $post)
+    {
+        return false;
     }
 }
