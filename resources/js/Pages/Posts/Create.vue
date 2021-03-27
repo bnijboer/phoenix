@@ -2,7 +2,7 @@
     <layout-master>
         <template #header>Nieuw bericht</template>
 
-        <form @submit.prevent="form.post(route('posts.store'), form)">
+        <form @submit.prevent="submit(form)">
             <div>
                 <form-label for="title" />
                 <form-input id="title" type="text" placeholder="Titel" class="mt-1 block w-full" v-model="form.title" required autofocus />
@@ -94,6 +94,10 @@
             selectFile(event) {
                 this.form.image = event.target.files[0];
             },
-        }
+            
+            submit(form) {
+                form.post(route('posts.store'), form);
+            },
+        },
     }
 </script>

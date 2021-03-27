@@ -2,7 +2,7 @@
     <layout-master>
         <template #header>Bericht bewerken</template>
 
-        <form @submit.prevent="form.patch(route('posts.update', post), form)">
+        <form @submit.prevent="submit(form)">
             <div>
                 <form-label for="title" />
                 <form-input id="title" type="text" placeholder="Titel" class="mt-1 block w-full" v-model="form.title" required />
@@ -27,7 +27,7 @@
                     id="date-picker"
                     type="date"
                     class="mt-1 block w-full"
-                    :min="min"
+                    :min="formattedDate"
                     v-model="form.published_at"
                     required />
                 <validation-error :message="form.errors.published_at" />
@@ -83,9 +83,15 @@
         },
         
         computed: {
-            min() {
-                return format(new Date(), 'yyyy-MM-dd');
-            }
+            formattedDate() {
+                return format(parseISO(this.post.published_at), 'yyyy-MM-dd');
+            },
         },
+        
+        methods: {
+            submit(form) {
+                form.patch(route('posts.update', this.post), form)
+            },
+        }
     }
 </script>
