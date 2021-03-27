@@ -32,18 +32,7 @@ class Post extends Model
      */
     protected $casts = [
         'is_published' => 'boolean',
-    ];
-    
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'created_at',
-        'deleted_at',
-        'published_at',
-        'updated_at',
+        'published_at' => 'datetime',
     ];
     
     /**
