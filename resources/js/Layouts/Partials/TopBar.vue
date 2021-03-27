@@ -70,7 +70,6 @@
             ApplicationLogo,
             BreezeDropdown,
             BreezeDropdownLink,
-            BreezeNavLink,
             BreezeResponsiveNavLink,
         },
 
