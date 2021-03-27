@@ -8,6 +8,16 @@ use App\Models\Post;
 
 class PostCommentController extends Controller
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function store(Post $post, CommentRequest $request)
     {
         $this->authorize('create', Comment::class);
