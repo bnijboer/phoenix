@@ -61,7 +61,9 @@
         
         computed: {
             owner() {
-                return this.$page.props.auth.user.is_editor || this.$page.props.auth.user.is_admin;
+                if (this.user) {
+                    return this.$page.props.auth.user.is_editor || this.$page.props.auth.user.is_admin;
+                }
             },
             
             user() {

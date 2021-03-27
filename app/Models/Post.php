@@ -21,6 +21,7 @@ class Post extends Model
         'image',
         'is_published',
         'published_at',
+        'slug',
         'title',
         'user_id',
     ];
@@ -53,6 +54,16 @@ class Post extends Model
     }
     
     /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
+    /**
      * The comments for the post.
      */
     public function comments()
@@ -74,15 +85,5 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-    
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'title';
     }
 }

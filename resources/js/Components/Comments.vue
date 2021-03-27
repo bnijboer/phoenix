@@ -75,7 +75,7 @@
         
         methods: {
             del(comment, index) {
-                const url = route('comments.destroy', [this.post, comment]);
+                const url = route('posts.comments.destroy', [this.post, comment]);
 
                 axios.delete(url).then(() => {
                     this.comments.splice(index, 1);
@@ -83,7 +83,7 @@
             },
             
             submit(form) {
-                const url = route('comments.store', this.post);
+                const url = route('posts.comments.store', this.post);
                 
                 axios.post(url, form).then((response) => {
                     this.comments.push(response.data);

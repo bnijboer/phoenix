@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class PostFactory extends Factory
 {
@@ -23,9 +24,12 @@ class PostFactory extends Factory
     public function definition(): array
     {
         Schema::disableForeignKeyConstraints();
+        
+        $title = $this->faker->sentence;
 
         return [
-            'title' => $this->faker->sentence,
+            'slug' => Str::of($title)->slug('-'),
+            'title' => $title,
             'body' => $this->faker->text,
             'is_published' => true,
         ];

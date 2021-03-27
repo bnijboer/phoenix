@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Str;
 use Inertia\Response;
 
 class PostController extends Controller
@@ -54,7 +55,9 @@ class PostController extends Controller
     {
         $this->authorize('create', Post::class);
         
-        $post = $request->user()->posts()->create($request->except('keywords'));
+        $post = $request->user()->posts()->make($request->except('keywords'));
+        $post->slug = Str::of($request->title)->slug('-');
+        $post->save();
         
         // Handles (optional) blogpost tags.
         if ($request->filled('keywords')) {
