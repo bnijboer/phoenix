@@ -1,31 +1,52 @@
 <template>
-        <div v-if="comments.length">
-            <div v-for="(comment, index) in comments" :key="comment.id">
-                <comment :comment="comment" @remove="del(comment, index)" />
-
-                <hr class="my-3">
-            </div>
-        </div>
-        <div v-else class="text-center">
-            <div v-if="!owner">
-                Hé {{ user.username }}, wat vind je van deze blogpost?
-            </div>
-            <div v-else>
-                Er zijn nog geen reacties.
-            </div>
-        </div>
-        
-        <form class="mt-5" @submit.prevent="submit(form)" ref="comment">
-            <div>
-                <form-label for="content" />
-                <form-input id="content" type="text" placeholder="Bericht" class="mt-1 block w-full" v-model="form.content" required />
-                <validation-error :message="form.errors.content" />
-            </div>
+    <div class="mt-8 bg-gray-100 p-4 rounded">
+        <div class="text-center font-semibold">
+            Reacties:
             
-            <div class="flex justify-end mt-3">
-                <submit-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Reageren</submit-button>
+            <hr class="my-3">
+        </div>
+                
+        <div class="p-4">
+            <div v-if="user">
+                <div v-if="comments.length">
+                    <div v-for="(comment, index) in comments" :key="comment.id">
+                        <comment :comment="comment" @remove="del(comment, index)" />
+
+                        <hr class="my-3">
+                    </div>
+                </div>
+                <div v-else class="text-center">
+                    <div v-if="!owner">
+                        Hé {{ user.username }}, wat vind je van deze blogpost?
+                    </div>
+                    <div v-else>
+                        Er zijn nog geen reacties.
+                    </div>
+                    
+                    <hr class="mt-8">
+                </div>
+                
+                <form class="mt-5" @submit.prevent="submit(form)" ref="comment">
+                    <div>
+                        <form-label for="content" />
+                        <form-input id="content" type="text" placeholder="Bericht" class="mt-1 block w-full" v-model="form.content" required />
+                        <validation-error :message="form.errors.content" />
+                    </div>
+                    
+                    <div class="flex justify-end mt-3">
+                        <submit-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Reageren</submit-button>
+                    </div>
+                </form>
             </div>
-        </form>
+            <div v-else class="text-center">
+                <div>Registreer om te kunnen reageren en reacties te lezen.</div>
+                
+                <div>
+                    <inertia-link :href="route('register')" class="ml-4 text-lg text-gray-700 underline">Registeren</inertia-link>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -87,7 +108,7 @@
                 
                 axios.post(url, form).then((response) => {
                     this.comments.push(response.data);
-                    this.$refs.comment.reset();
+                    this.form.reset('content');
                 }).catch(error => {
                     console.log(error.response.data.errors.content);
                 });

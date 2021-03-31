@@ -18,15 +18,7 @@
             </div>
         </div>
         
-        <div v-if="user" class="mt-8 bg-gray-100 p-4 rounded">
-            <div class="text-center font-semibold">
-                Reacties:
-                
-                <hr class="my-3">
-            </div>
-            
-            <comments :post="post" />
-        </div>
+        <comments :post="post" />
     </layout-master>
 </template>
 
