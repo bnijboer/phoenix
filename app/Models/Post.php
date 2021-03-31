@@ -86,4 +86,16 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function addTags(String $keywordString)
+    {
+        $keywords = explode(', ', strtolower($keywordString));
+            
+        foreach ($keywords as $keyword) {
+            if (! $this->tags->containsStrict('keyword', $keyword)) {
+                $tag = Tag::firstOrCreate(['keyword' => $keyword]);
+                $this->tags()->attach($tag);
+            }
+        }
+    }
 }

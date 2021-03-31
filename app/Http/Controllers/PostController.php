@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
-use App\Models\Tag;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Str;
@@ -59,16 +58,8 @@ class PostController extends Controller
         $post->slug = Str::of($request->title)->slug('-');
         $post->save();
         
-        // Handles (optional) blogpost tags.
         if ($request->filled('keywords')) {
-            $keywords = explode(', ', $request->keywords);
-            
-            foreach ($keywords as $keyword) {
-                if (! $post->tags->containsStrict('keyword', strtolower($keyword))) {
-                    $tag = Tag::firstOrCreate(['keyword' => strtolower($keyword)]);
-                    $post->tags()->attach($tag);
-                }
-            }
+            $post->addTags($request->keywords);
         }
         
         return redirect()->route('posts.show', $post);
@@ -114,17 +105,9 @@ class PostController extends Controller
         $this->authorize('update', $post);
 
         $post->update($request->validated());
-        
-        // Handles (optional) blogpost tags.
+
         if ($request->filled('keywords')) {
-            $keywords = explode(', ', $request->keywords);
-            
-            foreach ($keywords as $keyword) {
-                if (! $post->tags->containsStrict('keyword', strtolower($keyword))) {
-                    $tag = Tag::firstOrCreate(['keyword' => strtolower($keyword)]);
-                    $post->tags()->attach($tag);
-                }
-            }
+            $post->addTags($request->keywords);
         }
         
         return redirect()->route('posts.show', $post);
