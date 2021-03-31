@@ -6,6 +6,7 @@ use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
 use Inertia\Response;
 
@@ -23,11 +24,13 @@ class PostController extends Controller
 
     /**
      * Display a listing of the resource.
+     *
+     * @return Response The HTML server response.
      */
     public function index(): Response
     {
         $posts = Post::latest()->get();
-        
+
         return inertia('Posts/Index', compact('posts'));
     }
 
@@ -48,20 +51,21 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param PostRequest $request
+     * @return RedirectResponse
      * @throws AuthorizationException
      */
-    public function store(PostRequest $request)
+    public function store(PostRequest $request): RedirectResponse
     {
         $this->authorize('create', Post::class);
-        
+
         $post = $request->user()->posts()->make($request->except('keywords'));
         $post->slug = Str::of($request->title)->slug('-');
         $post->save();
-        
+
         if ($request->filled('keywords')) {
             $post->addTags($request->keywords);
         }
-        
+
         return redirect()->route('posts.show', $post);
     }
 
@@ -98,9 +102,10 @@ class PostController extends Controller
      *
      * @param PostRequest $request
      * @param Post $post
+     * @return RedirectResponse
      * @throws AuthorizationException
      */
-    public function update(PostRequest $request, Post $post)
+    public function update(PostRequest $request, Post $post): RedirectResponse
     {
         $this->authorize('update', $post);
 
@@ -109,7 +114,7 @@ class PostController extends Controller
         if ($request->filled('keywords')) {
             $post->addTags($request->keywords);
         }
-        
+
         return redirect()->route('posts.show', $post);
     }
 
@@ -117,15 +122,16 @@ class PostController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Post $post
+     * @return RedirectResponse
      * @throws AuthorizationException
      * @throws Exception
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post): RedirectResponse
     {
         $this->authorize('delete', $post);
 
         $post->delete();
-        
+
         return redirect()->route('posts.index');
     }
 }

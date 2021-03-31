@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SearchRequest;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Builder;
+use Inertia\Response;
 
 class SearchController extends Controller
 {
-    public function __invoke(SearchRequest $request)
+    /**
+     * @param SearchRequest $request
+     * @return Response
+     */
+    public function __invoke(SearchRequest $request): Response
     {
         $searchTerm = $request->query('query');
-        
+
         $posts = Post::where('title', 'like', "%$searchTerm%")
                      ->orWhere('body', 'like', "%$searchTerm%")
                      ->orWhereHas('tags', function (Builder $query) use ($searchTerm) {
@@ -19,7 +24,7 @@ class SearchController extends Controller
                     })
                     ->latest()
                     ->get();
-        
+
         return inertia('Posts/Index', compact('posts'));
     }
 }

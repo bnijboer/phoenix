@@ -14,7 +14,7 @@ class PublishedScope implements Scope
      *
      * @param  Builder  $builder
      * @param  Model  $model
-     * @return void
+     * @return Builder The scoped query.
      */
     public function apply(Builder $builder, Model $model)
     {

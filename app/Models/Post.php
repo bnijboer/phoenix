@@ -35,14 +35,14 @@ class Post extends Model
         'is_published' => 'boolean',
         'published_at' => 'datetime',
     ];
-    
+
     /**
      * The relationships that should always be loaded.
      *
      * @var array
      */
     protected $with = ['comments', 'tags'];
-    
+
     /**
      * The "booted" method of the model.
      *
@@ -52,7 +52,7 @@ class Post extends Model
     {
         static::addGlobalScope(new PublishedScope);
     }
-    
+
     /**
      * Get the route key for the model.
      *
@@ -62,7 +62,7 @@ class Post extends Model
     {
         return 'slug';
     }
-    
+
     /**
      * The comments for the post.
      */
@@ -70,7 +70,7 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
-    
+
     /**
      * The tags that belong to the post.
      */
@@ -86,11 +86,11 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
+
     public function addTags(String $keywordString)
     {
         $keywords = explode(', ', strtolower($keywordString));
-            
+
         foreach ($keywords as $keyword) {
             if (! $this->tags->containsStrict('keyword', $keyword)) {
                 $tag = Tag::firstOrCreate(['keyword' => $keyword]);

@@ -8,15 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     use HasFactory;
-    
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'keyword',
-    ];
+    protected $fillable = ['keyword'];
 
     /**
      * The posts for the tag.
