@@ -25,15 +25,13 @@ class UserFactory extends Factory
     {
         return [
             'username' => 'dummy',
-            'first_name' => 'Dummy',
-            'last_name' => 'Test',
+            'first_name' => 'Test',
+            'last_name' => 'Dummy',
             'email' => 'dummy@phoenix.test',
             'email_verified_at' => now(),
             'password' => Hash::make(env('MAIN_USER_PASSWORD', 'test')),
             'remember_token' => Str::random(10),
             'avatar' => asset('images/default-avatar.jpeg'),
-            'is_admin' => false,
-            'is_editor' => false,
         ];
     }
 
@@ -46,7 +44,6 @@ class UserFactory extends Factory
     {
         return $this->state([
             'username' => 'testadmin',
-            'first_name' => 'Test',
             'last_name' => 'Admin',
             'email' => 'admin@phoenix.test',
             'is_admin' => true,
@@ -62,7 +59,6 @@ class UserFactory extends Factory
     {
         return $this->state([
             'username' => 'testeditor',
-            'first_name' => 'Test',
             'last_name' => 'Editor',
             'email' => 'editor@phoenix.test',
             'is_editor' => true,
