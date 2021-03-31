@@ -22,8 +22,10 @@ class PublishedScope implements Scope
             $builder->when(Auth::user()->isOwner(), function ($query) {
                 return $query;
             }, function ($query) {
-                return $query->wherePublished(true);
+                return $query->whereIsPublished(true);
             });
+        } else {
+            return $builder->whereIsPublished(true);
         }
     }
 }
