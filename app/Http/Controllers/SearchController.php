@@ -10,7 +10,7 @@ class SearchController extends Controller
 {
     public function __invoke(SearchRequest $request)
     {
-        $searchTerm = $request->get('query');
+        $searchTerm = $request->query('query');
         
         $posts = Post::where('title', 'like', "%$searchTerm%")
                      ->orWhere('body', 'like', "%$searchTerm%")
