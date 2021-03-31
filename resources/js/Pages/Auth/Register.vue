@@ -5,22 +5,32 @@
 
             <form @submit.prevent="submit">
                 <div>
-                    <breeze-label for="name" value="Name" />
-                    <breeze-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
+                    <breeze-label for="first_name" value="Voornaam" />
+                    <breeze-input id="first_name" type="text" class="mt-1 block w-full" v-model="form.first_name" required autofocus autocomplete="first_name" />
+                </div>
+                
+                <div class="mt-4">
+                    <breeze-label for="last_name" value="Achternaam" />
+                    <breeze-input id="last_name" type="text" class="mt-1 block w-full" v-model="form.last_name" required autocomplete="last_name" />
+                </div>
+                
+                <div class="mt-4">
+                    <breeze-label for="username" value="Gebruikersnaam" />
+                    <breeze-input id="username" type="text" class="mt-1 block w-full" v-model="form.username" required autocomplete="username" />
                 </div>
 
                 <div class="mt-4">
-                    <breeze-label for="email" value="Email" />
+                    <breeze-label for="email" value="E-mail" />
                     <breeze-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autocomplete="username" />
                 </div>
 
                 <div class="mt-4">
-                    <breeze-label for="password" value="Password" />
+                    <breeze-label for="password" value="Wachtwoord" />
                     <breeze-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
                 </div>
 
                 <div class="mt-4">
-                    <breeze-label for="password_confirmation" value="Confirm Password" />
+                    <breeze-label for="password_confirmation" value="Wachtwoord bevestigen" />
                     <breeze-input id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
                 </div>
 
@@ -57,7 +67,10 @@
         data() {
             return {
                 form: this.$inertia.form({
-                    name: '',
+                    first_name: '',
+                    last_name: '',
+                    username: '',
+                    avatar: '',
                     email: '',
                     password: '',
                     password_confirmation: '',

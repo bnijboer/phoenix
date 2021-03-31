@@ -1,13 +1,16 @@
 <template>
-    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            <inertia-link :href="route('posts.index')" class="text-sm text-gray-700 underline">
-                Blog
-            </inertia-link>
-
-            <inertia-link v-if="!user" :href="route('login')" class="ml-4 text-sm text-gray-700 underline">
-                Log in
-            </inertia-link>
+    <div class="min-h-screen flex flex-col justify-center bg-gray-100 dark:bg-gray-900">
+        <div class="flex justify-center">
+            <inertia-link :href="route('posts.index')" as="button" class="text-sm text-gray-700 underline">Blog</inertia-link>
+            
+            <div v-if="user">
+                <inertia-link :href="route('logout')" method="post" as="button" class="ml-4 text-sm text-gray-700 underline">Uitloggen</inertia-link>
+            </div>
+            <div v-else class="flex">
+                <inertia-link :href="route('login')" as="button" class="ml-4 text-sm text-gray-700 underline">Inloggen</inertia-link>
+                
+                <inertia-link :href="route('register')" as="button" class="ml-4 text-sm text-gray-700 underline">Registeren</inertia-link>
+            </div>
         </div>
     </div>
 </template>
@@ -16,8 +19,14 @@
     export default {
         computed: {
             user() {
-                return this.$page.props.auth.user;
+                return this.$page.props.auth.user ? true : false;
             },
+        },
+        
+        methods: {
+            auth() {
+                return this.$page.props.auth.user ? true : false;
+            }
         }
     }
 </script>
