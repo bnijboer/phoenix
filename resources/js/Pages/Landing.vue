@@ -22,12 +22,6 @@
                 return this.$page.props.auth.user ? true : false;
             },
         },
-        
-        methods: {
-            auth() {
-                return this.$page.props.auth.user ? true : false;
-            }
-        }
     }
 </script>
 
