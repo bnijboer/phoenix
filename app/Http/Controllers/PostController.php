@@ -58,13 +58,13 @@ class PostController extends Controller
     {
         $this->authorize('create', Post::class);
 
-        $post = $request->user()->posts()->make($request->except('keywords'));
+        $post = $request->user()->posts()->make($request->except('tags'));
         $post->slug = Str::of($request->title)->slug('-');
         $post->save();
 
-        if ($request->filled('keywords')) {
-            $post->addTags($request->keywords);
-        }
+        // Takes all defined keywords and, if there are any, passes them on to be attached as tags to the post.
+        $tags = array_filter(array_column($request->tags, 'keyword'));
+        !count($tags) ?: $post->addTags($tags);
 
         return redirect()->route('posts.show', $post);
     }

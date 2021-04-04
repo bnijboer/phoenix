@@ -8,25 +8,30 @@
                 <form-input id="title" type="text" placeholder="Titel" class="mt-1 block w-full" v-model="form.title" required autofocus />
                 <validation-error :message="form.errors.title" />
             </div>
-            
+
             <div class="mt-4">
                 <form-label for="body" />
                 <form-input id="body" type="text" placeholder="Inhoud" class="mt-1 block w-full" v-model="form.body" required />
                 <validation-error :message="form.errors.body" />
             </div>
-            
+
             <div class="mt-4">
                 <form-label for="image" />
                 <form-input id="image" type="file" class="mt-1 block w-full" @change="selectFile" />
                 <validation-error :message="form.errors.image" />
             </div>
-            
-            <div class="mt-4">
-                <form-label for="keywords" />
-                <form-input id="keywords" type="text" placeholder="Tags: Honden, Happy, Hen" class="mt-1 block w-full" v-model="form.keywords" />
-                <validation-error :message="form.errors.keywords" />
+
+            <div class="mt-4 inline-flex" v-for="(tag, index) in form.tags" :key="index">
+                <form-label :for="`keyword${index}`" />
+                <form-input :id="`keyword${index}`" type="text" :placeholder="`Tag ${index + 1}`" v-model="tag.keyword" />
+                <validation-error :message="form.errors.tags" />
+
+                <div>
+                    <i class="fas fa-minus-circle" @click="removeTag(index)" v-show="index || (!index && form.tags.length > 1)" />
+                    <i class="fas fa-plus-circle" @click="addTag()" v-show="index === form.tags.length - 1" />
+                </div>
             </div>
-            
+
             <div class="mt-4">
                 <form-label for="date-picker" />
                 <form-input
@@ -38,13 +43,11 @@
                     required />
                 <validation-error :message="form.errors.published_at" />
             </div>
-            
+
             <div class="flex justify-between mt-10">
                 <back-link />
-                
-                <submit-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Aanmaken
-                </submit-button>
+
+                <submit-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Aanmaken</submit-button>
             </div>
         </form>
     </layout-master>
@@ -59,7 +62,7 @@
     import LayoutMaster from '@/Layouts/Master';
     import SubmitButton from '@/Components/Button';
     import ValidationError from '@/Components/InputError';
-    
+
     export default {
         components: {
             BackLink,
@@ -69,21 +72,23 @@
             SubmitButton,
             ValidationError,
         },
-        
+
         inheritAttrs: false,
-        
+
         setup () {
             const form = useForm({
                 title: null,
                 body: null,
                 image: null,
-                keywords: null,
                 published_at: format(new Date(), 'yyyy-MM-dd'),
+                tags: [{
+                    keyword: null,
+                }],
             });
 
             return { form };
         },
-        
+
         computed: {
             min() {
                 return format(new Date(), 'yyyy-MM-dd');
@@ -94,10 +99,20 @@
             selectFile(event) {
                 this.form.image = event.target.files[0];
             },
-            
+
             submit(form) {
                 form.post(route('posts.store'), form);
             },
+
+            addTag() {
+                this.form.tags.push({
+                    keyword: null,
+                });
+            },
+
+            removeTag(index) {
+                this.form.tags.splice(index, 1);
+            }
         },
     }
 </script>

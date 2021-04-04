@@ -27,8 +27,8 @@ class PostRequest extends FormRequest
             'title' => ['required', 'string'],
             'body' => ['required', 'string'],
             'image' => ['image', 'nullable'],
-            'keywords' => ['string', 'nullable'],
             'published_at' => ['required', 'date'],
+            'tags.*.keyword' => ['string', 'nullable'],
         ];
     }
 }
