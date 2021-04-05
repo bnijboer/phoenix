@@ -93,7 +93,7 @@ class PostController extends Controller
 
         return inertia('Posts/Edit', [
             'post' => $post,
-            'keywords' => $post->tags->implode('keyword', ', '),
+            'keywords' => $post->tags,
         ]);
     }
 
@@ -111,9 +111,23 @@ class PostController extends Controller
 
         $post->update($request->validated());
 
-        if ($request->filled('keywords')) {
-            $post->addTags($request->keywords);
+        $newTags = collect($request->tags)->pluck('keyword');
+
+        $unusedTags = $post->tags->reject(function ($tag) use ($newTags) {
+            return $newTags->contains($tag->keyword) ? $tag : null;
+        });
+
+        foreach ($unusedTags as $tag) {
+            $post->tags()->detach($tag);
+
+            if (!count($tag->posts)) {
+                $tag->delete();
+            }
         }
+
+        $tags = array_filter(array_column($request->tags, 'keyword'));
+
+        !count($tags) ?: $post->addTags($tags);
 
         return redirect()->route('posts.show', $post);
     }

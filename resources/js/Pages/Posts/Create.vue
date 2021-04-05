@@ -96,14 +96,6 @@
         },
 
         methods: {
-            selectFile(event) {
-                this.form.image = event.target.files[0];
-            },
-
-            submit(form) {
-                form.post(route('posts.store'), form);
-            },
-
             addTag() {
                 this.form.tags.push({
                     keyword: null,
@@ -112,7 +104,15 @@
 
             removeTag(index) {
                 this.form.tags.splice(index, 1);
-            }
+            },
+
+            selectFile(event) {
+                this.form.image = event.target.files[0];
+            },
+
+            submit(form) {
+                form.post(route('posts.store'), form);
+            },
         },
     }
 </script>
