@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Scopes\PublishedScope;
+use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -33,7 +34,6 @@ class Post extends Model
      */
     protected $casts = [
         'is_published' => 'boolean',
-        'published_at' => 'datetime',
     ];
 
     /**
@@ -86,19 +86,48 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    /**
+     * Synchronizes the tags belonging to the post with a given array of tags.
+     *
+     * @param array $tags
+     */
+    public function syncTags(array $tags)
+    {
+        $keywords = collect($tags)->pluck('keyword');
+        
+        if (count($keywords)) {
+            $this->removeTags($keywords);
+            $this->addTags($keywords);
+        }
+    }
 
     /**
      * Handles the tags to be attached to the post.
      *
-     * @param array $keywords
+     * @param Collection $keywords
      */
-    public function addTags(array $keywords)
+    public function addTags(Collection $keywords)
     {
         foreach ($keywords as $keyword) {
             if (!$this->tags->containsStrict('keyword', $keyword)) {
-                $this->tags()->attach(
-                    Tag::firstOrCreate(compact('keyword'))
-                );
+                $this->tags()->attach(Tag::firstOrCreate(compact('keyword')));
+            }
+        }
+    }
+
+    /**
+     * Detaches tags from a post and, if a tag has no associated posts, removes it from storage.
+     *
+     * @param Collection $keywords
+     */
+    public function removeTags(Collection $keywords)
+    {
+        foreach ($this->tags as $tag) {
+            if (! $keywords->contains($tag->keyword)) {
+                $this->tags()->detach($tag);
+                
+                count($tag->posts) ?: $tag->delete();
             }
         }
     }

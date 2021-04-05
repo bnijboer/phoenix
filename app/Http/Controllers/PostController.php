@@ -61,10 +61,8 @@ class PostController extends Controller
         $post = $request->user()->posts()->make($request->except('tags'));
         $post->slug = Str::of($request->title)->slug('-');
         $post->save();
-
-        // Takes all defined keywords and, if there are any, passes them on to be attached as tags to the post.
-        $tags = array_filter(array_column($request->tags, 'keyword'));
-        !count($tags) ?: $post->addTags($tags);
+        
+        $post->syncTags($request->tags);
 
         return redirect()->route('posts.show', $post);
     }
@@ -110,24 +108,8 @@ class PostController extends Controller
         $this->authorize('update', $post);
 
         $post->update($request->validated());
-
-        $newTags = collect($request->tags)->pluck('keyword');
-
-        $unusedTags = $post->tags->reject(function ($tag) use ($newTags) {
-            return $newTags->contains($tag->keyword) ? $tag : null;
-        });
-
-        foreach ($unusedTags as $tag) {
-            $post->tags()->detach($tag);
-
-            if (!count($tag->posts)) {
-                $tag->delete();
-            }
-        }
-
-        $tags = array_filter(array_column($request->tags, 'keyword'));
-
-        !count($tags) ?: $post->addTags($tags);
+        
+        $post->syncTags($request->tags);
 
         return redirect()->route('posts.show', $post);
     }
