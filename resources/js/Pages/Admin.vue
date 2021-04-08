@@ -1,8 +1,8 @@
 <template>
     <layout-master>
-        <template #header>Over Mij</template>
+        <template #header>Instellingen</template>
         
-        Over mij
+        Instellingen
     </layout-master>
 </template>
 

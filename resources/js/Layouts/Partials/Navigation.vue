@@ -9,6 +9,8 @@
                 <breeze-nav-link :href="route('about')" :active="route().current('about')">Over mij</breeze-nav-link>
 
                 <breeze-nav-link v-if="owner" :href="route('posts.create')" :active="route().current('posts.create')">Nieuw bericht</breeze-nav-link>
+                
+                <breeze-nav-link v-if="admin" :href="route('admin')" :active="route().current('admin')">Instellingen</breeze-nav-link>
             </div>
             
             <search-bar />
@@ -27,6 +29,12 @@
         },
         
         computed: {
+            admin() {
+                if (this.$page.props.auth.user) {
+                    return this.$page.props.auth.user.is_admin;
+                }
+            },
+            
             owner() {
                 if (this.$page.props.auth.user) {
                     return this.$page.props.auth.user.is_editor || this.$page.props.auth.user.is_admin;

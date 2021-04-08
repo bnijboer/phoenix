@@ -110,7 +110,7 @@ class Post extends Model
     public function addTags(Collection $keywords)
     {
         foreach ($keywords as $keyword) {
-            if (!$this->tags->containsStrict('keyword', $keyword)) {
+            if (! $this->tags->containsStrict('keyword', $keyword)) {
                 $this->tags()->attach(Tag::firstOrCreate(compact('keyword')));
             }
         }

@@ -18,15 +18,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PageController::class, 'landing'])->name('landing');
-Route::get('/about', [PageController::class, 'about'])->name('about');
+// Navbar pages routes
+Route::get('/',         [PageController::class, 'landing'])->name('landing');
+Route::get('/about',    [PageController::class, 'about'])->name('about');
+Route::get('/admin',    [PageController::class, 'admin'])->name('admin');
 
+// Blog post routes
 Route::resource('posts', PostController::class);
 
+// Comment section routes
 Route::resource('posts.comments', PostCommentController::class)->only(['store', 'destroy']);
 
+// Tag routes
 Route::get('/tags/{tag}', TagController::class)->name('tags.show');
 
+// Search bar routes
 Route::get('/search', SearchController::class)->name('search');
 
 require __DIR__.'/auth.php';
