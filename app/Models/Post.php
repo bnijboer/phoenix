@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -111,7 +112,11 @@ class Post extends Model
     {
         foreach ($keywords as $keyword) {
             if (! $this->tags->containsStrict('keyword', $keyword)) {
-                $this->tags()->attach(Tag::firstOrCreate(compact('keyword')));
+                $tag = Tag::firstOrCreate(compact('keyword'), [
+                    'slug' => Str::of($keyword)->slug('-')
+                ]);
+                
+                $this->tags()->attach($tag);
             }
         }
     }

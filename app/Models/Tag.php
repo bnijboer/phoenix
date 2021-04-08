@@ -14,7 +14,10 @@ class Tag extends Model
      *
      * @var array
      */
-    protected $fillable = ['keyword'];
+    protected $fillable = [
+        'keyword',
+        'slug',
+    ];
 
     /**
      * The posts for the tag.
@@ -22,5 +25,15 @@ class Tag extends Model
     public function posts()
     {
         return $this->belongsToMany(Post::class);
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }
