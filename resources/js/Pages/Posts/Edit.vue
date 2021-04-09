@@ -73,7 +73,6 @@
 
         props: {
             post: Object,
-            keywords: Array,
         },
 
         setup (props) {
@@ -81,7 +80,7 @@
                 title: props.post.title,
                 body: props.post.body,
                 published_at: format(parseISO(props.post.published_at), 'yyyy-MM-dd'),
-                tags: props.keywords.length ? props.keywords : [{
+                tags: props.post.tags.length ? props.post.tags : [{
                     keyword: null,
                 }],
             });

@@ -7,7 +7,6 @@ use App\Models\Post;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Str;
 use Inertia\Response;
 
 class PostController extends Controller
@@ -87,10 +86,7 @@ class PostController extends Controller
     {
         $this->authorize('update', $post);
 
-        return inertia('Posts/Edit', [
-            'post' => $post,
-            'keywords' => $post->tags,
-        ]);
+        return inertia('Posts/Edit', compact('post'));
     }
 
     /**
