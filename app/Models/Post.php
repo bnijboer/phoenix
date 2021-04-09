@@ -105,7 +105,7 @@ class Post extends Model
     }
     
     /**
-     * Synchronizes the tags belonging to the post with a given array of tags.
+     * Synchronizes the tags belonging to the post.
      *
      * @param array $tags
      */
@@ -138,7 +138,7 @@ class Post extends Model
     }
 
     /**
-     * Detaches tags from a post and, if a tag has no associated posts, removes it from storage.
+     * Detaches tags from a post and removes them from storage if they have no (other) related posts.
      *
      * @param Collection $keywords
      */
