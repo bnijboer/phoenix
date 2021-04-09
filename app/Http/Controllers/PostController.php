@@ -58,9 +58,7 @@ class PostController extends Controller
     {
         $this->authorize('create', Post::class);
 
-        $post = $request->user()->posts()->make($request->except('tags'));
-        $post->slug = Str::of($request->title)->slug('-');
-        $post->save();
+        $post = $request->user()->posts()->create($request->validated());
         
         $post->syncTags($request->tags);
 

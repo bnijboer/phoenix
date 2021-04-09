@@ -42,7 +42,10 @@ class Post extends Model
      *
      * @var array
      */
-    protected $with = ['comments', 'tags'];
+    protected $with = [
+        'comments',
+        'tags',
+    ];
 
     /**
      * The "booted" method of the model.
@@ -52,6 +55,29 @@ class Post extends Model
     protected static function booted()
     {
         static::addGlobalScope(new PublishedScope);
+    }
+    
+    /**
+     * Bootstrap the model and its traits.
+     *
+     * @return bool
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saving(function($model) {
+            $slug = Str::slug($model->title);
+            $count = 1;
+            
+            while (static::whereSlug($slug)->where('id', '!=', $model->id)->exists()) {
+                $slug = Str::slug($model->title . ' ' . $count++);
+            }
+            
+            $model->slug = $slug;
+
+            return true;
+        });
     }
 
     /**
@@ -113,7 +139,7 @@ class Post extends Model
             if (! $this->tags->containsStrict('keyword', $keyword)) {
                 $tag = Tag::firstOrCreate(
                     compact('keyword'),
-                    ['slug' => Str::of($keyword)->slug('-')]
+                    ['slug' => Str::slug($keyword)]
                 );
                 
                 $this->tags()->attach($tag);
