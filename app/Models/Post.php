@@ -95,12 +95,11 @@ class Post extends Model
      */
     public function syncTags(array $tags)
     {
-        $keywords = collect($tags)->pluck('keyword');
+        $keywords = collect($tags)->pluck('keyword')->filter();
         
-        if (count($keywords)) {
-            $this->removeTags($keywords);
-            $this->addTags($keywords);
-        }
+        $this->removeTags($keywords);
+        
+        !count($keywords) ?: $this->addTags($keywords);
     }
 
     /**
@@ -108,13 +107,14 @@ class Post extends Model
      *
      * @param Collection $keywords
      */
-    public function addTags(Collection $keywords)
+    private function addTags(Collection $keywords)
     {
         foreach ($keywords as $keyword) {
             if (! $this->tags->containsStrict('keyword', $keyword)) {
-                $tag = Tag::firstOrCreate(compact('keyword'), [
-                    'slug' => Str::of($keyword)->slug('-')
-                ]);
+                $tag = Tag::firstOrCreate(
+                    compact('keyword'),
+                    ['slug' => Str::of($keyword)->slug('-')]
+                );
                 
                 $this->tags()->attach($tag);
             }
@@ -126,7 +126,7 @@ class Post extends Model
      *
      * @param Collection $keywords
      */
-    public function removeTags(Collection $keywords)
+    private function removeTags(Collection $keywords)
     {
         foreach ($this->tags as $tag) {
             if (! $keywords->contains($tag->keyword)) {

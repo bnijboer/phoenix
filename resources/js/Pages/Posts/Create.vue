@@ -23,7 +23,7 @@
 
             <div class="mt-4 inline-flex" v-for="(tag, index) in form.tags" :key="index">
                 <form-label :for="`keyword${index}`" />
-                <form-input :id="`keyword${index}`" type="text" :placeholder="`Tag ${index + 1}`" v-model="tag.keyword" />
+                <form-input :id="`keyword${index}`" type="text" :placeholder="`Tag ${index + 1}`" v-model="tag.keyword" class="capitalize" />
                 <validation-error :message="form.errors.tags" />
 
                 <div>
