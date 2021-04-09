@@ -72,7 +72,7 @@ class PostController extends Controller
      */
     public function show(Post $post): Response
     {
-        return inertia('Posts/Show', ['post' => $post->load('comments')]);
+        return inertia('Posts/Show', ['post' => $post->load(['comments', 'tags'])]);
     }
 
     /**
@@ -86,7 +86,7 @@ class PostController extends Controller
     {
         $this->authorize('update', $post);
 
-        return inertia('Posts/Edit', compact('post'));
+        return inertia('Posts/Edit', ['post' => $post->load(['tags'])]);
     }
 
     /**

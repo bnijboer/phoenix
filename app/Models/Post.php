@@ -38,13 +38,6 @@ class Post extends Model
     ];
 
     /**
-     * The relationships that should always be loaded.
-     *
-     * @var array
-     */
-    protected $with = ['tags'];
-
-    /**
      * The "booted" method of the model.
      *
      * @return void
@@ -120,7 +113,7 @@ class Post extends Model
     {
         $keywords = collect($tags)->pluck('keyword')->filter();
         
-        $this->removeTags($keywords);
+        $this->removeUnused($keywords);
         
         !count($keywords) ?: $this->addTags($keywords);
     }
@@ -149,7 +142,7 @@ class Post extends Model
      *
      * @param Collection $keywords
      */
-    private function removeTags(Collection $keywords)
+    private function removeUnused(Collection $keywords)
     {
         foreach ($this->tags as $tag) {
             if (! $keywords->contains($tag->keyword)) {

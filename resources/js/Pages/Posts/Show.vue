@@ -4,6 +4,8 @@
         
         <post :post="post" />
         
+        <tags v-show="post.tags.length" :tags="post.tags" />
+        
         <div class="flex justify-between mt-10">
             <back-link />
             
@@ -29,6 +31,7 @@
     import LayoutMaster from '@/Layouts/Master';
     import Post from '@/Components/Post';
     import SubmitButton from '@/Components/Button';
+    import Tags from '@/Components/Tags'
 
     export default {
         components: {
@@ -37,6 +40,7 @@
             LayoutMaster,
             Post,
             SubmitButton,
+            Tags,
         },
         
         inheritAttrs: false,
