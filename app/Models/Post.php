@@ -42,10 +42,7 @@ class Post extends Model
      *
      * @var array
      */
-    protected $with = [
-        'comments',
-        'tags',
-    ];
+    protected $with = ['tags'];
 
     /**
      * The "booted" method of the model.

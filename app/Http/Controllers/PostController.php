@@ -72,7 +72,7 @@ class PostController extends Controller
      */
     public function show(Post $post): Response
     {
-        return inertia('Posts/Show', compact('post'));
+        return inertia('Posts/Show', ['post' => $post->load('comments')]);
     }
 
     /**
