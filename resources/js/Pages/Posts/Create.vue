@@ -1,8 +1,10 @@
 <template>
     <layout-master>
         <template #header>Nieuw bericht</template>
+        
+        <tiptap />
 
-        <form @submit.prevent="submit(form)">
+        <!-- <form @submit.prevent="submit(form)">
             <div>
                 <form-label for="title" />
                 <form-input id="title" type="text" placeholder="Titel" class="mt-1 block w-full" v-model="form.title" required autofocus />
@@ -49,7 +51,7 @@
 
                 <submit-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Aanmaken</submit-button>
             </div>
-        </form>
+        </form> -->
     </layout-master>
 </template>
 
@@ -61,6 +63,7 @@
     import FormLabel from '@/Components/Label';
     import LayoutMaster from '@/Layouts/Master';
     import SubmitButton from '@/Components/Button';
+    import Tiptap from '@/components/Tiptap.vue'
     import ValidationError from '@/Components/InputError';
 
     export default {
@@ -70,6 +73,7 @@
             FormInput,
             FormLabel,
             SubmitButton,
+            Tiptap,
             ValidationError,
         },
 
