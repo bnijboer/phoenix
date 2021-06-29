@@ -23,7 +23,7 @@ class SearchController extends Controller
                         $query->where('keyword', 'like', "%$searchTerm%");
                     })
                     ->latest()
-                    ->get();
+                    ->paginate(10);
 
         return inertia('Posts/Index', compact('posts'));
     }

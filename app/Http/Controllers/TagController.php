@@ -13,7 +13,7 @@ class TagController extends Controller
      */
     public function __invoke(Tag $tag): Response
     {
-        $posts = $tag->posts()->latest()->get();
+        $posts = $tag->posts()->latest()->paginate(10);
 
         return inertia('Posts/Index', compact('posts'));
     }

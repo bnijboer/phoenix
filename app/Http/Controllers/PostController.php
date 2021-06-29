@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Models\Tag;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
@@ -26,10 +27,10 @@ class PostController extends Controller
      *
      * @return Response The HTML server response.
      */
-    public function index(): Response
+    public function index(Tag $tag = null): Response
     {
-        $posts = Post::latest()->get();
-
+        $posts = Post::latest()->paginate(10);
+        
         return inertia('Posts/Index', compact('posts'));
     }
 
