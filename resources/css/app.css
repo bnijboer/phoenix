@@ -1,3 +1,84 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+
+
+/* Tailwind preflight */
+
+@layer base {
+    h1 {
+        @apply text-3xl;
+    }
+    
+    h2 {
+        @apply text-2xl;
+    }
+    
+    h3 {
+        @apply text-xl;
+    }
+}
+
+
+
+/* General */
+
+html, body {
+    min-height: 100vh;
+}
+
+.wrapper {
+    min-height: calc(100vh - 70px);
+    background-image: url('/images/background.jpg');
+}
+
+.bg-gradient-overlay {
+    background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 100%);
+}
+
+footer {
+    height: 70px;
+}
+
+
+
+/* Posts */
+
+.preview {
+    position: relative;
+    max-height: 300px;
+    overflow: hidden;
+}
+
+.post-date {
+    /* position: relative;
+    top: 10px;
+    left: 10px; */
+}
+
+.preview .post-title {
+    position: relative;
+    bottom: 0;
+    /* left: 10px;
+    padding: 10px; */
+}
+
+.post-title {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.post-body {
+    font-family: 'Raleway', sans-serif;
+}
+
+/* .read-more { 
+    position: absolute; 
+    bottom: 0; 
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, transparent, white);
+    z-index: 5;
+} */

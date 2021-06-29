@@ -748,6 +748,21 @@ select {
   outline: 1px auto -webkit-focus-ring-color;
 }
 
+h1 {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
 .container {
   width: 100%;
 }
@@ -32750,6 +32765,67 @@ select {
   -webkit-animation: bounce 1s infinite;
           animation: bounce 1s infinite;
 }
+
+/* Tailwind preflight */
+
+/* General */
+
+html, body {
+  min-height: 100vh;
+}
+
+.wrapper {
+  min-height: calc(100vh - 70px);
+  background-image: url('/images/background.jpg');
+}
+
+.bg-gradient-overlay {
+  background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 100%);
+}
+
+footer {
+  height: 70px;
+}
+
+/* Posts */
+
+.preview {
+  position: relative;
+  max-height: 300px;
+  overflow: hidden;
+}
+
+.post-date {
+  /* position: relative;
+    top: 10px;
+    left: 10px; */
+}
+
+.preview .post-title {
+  position: relative;
+  bottom: 0;
+  /* left: 10px;
+    padding: 10px; */
+}
+
+.post-title {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.post-body {
+  font-family: 'Raleway', sans-serif;
+}
+
+/* .read-more { 
+    position: absolute; 
+    bottom: 0; 
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, transparent, white);
+    z-index: 5;
+} */
 
 @media (min-width: 640px) {
   .sm\:container {
