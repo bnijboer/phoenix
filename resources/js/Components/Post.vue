@@ -1,19 +1,19 @@
 <template>
-    <div class="border-2 border-dark">
-        <div class="flex">
-            <div class="w-1/4 bg-purple-100">
-                <div class="post-date w-16 text-center text-gray-500 font-bold bg-white border-4 border-purple-400 p-2 m-3">
-                    <span v-if="unpublished">Wordt gepubliceerd op </span>{{ date }}
-                </div>
-            </div>
+    <div>
+        <div v-if="unpublished" class="text-center text-gray-700 font-bold bg-red-300 rounded-md p-3 mb-3">Nog niet gepubliceerd</div>
+        
+        <div class="flex post-header">
+            <div class="post-date w-16 tracking-wider text-gray-500 font-bold border-4 border-purple-400 rounded-sm">{{ date }}</div>
             
-            <div class="w-3/4 bg-indigo-200">
-                <div class="post-title text-2xl p-2">{{ post.title }}</div>
+            <div class="w-full">
+                <div class="post-title bg-purple-200 tracking-wide text-2xl text-gray-800 rounded-md">{{ post.title }}</div>
             </div>
         </div>
         
         <div class="p-3">
-            <div class="post-body text-gray-800 p-3" v-html="post.body" />
+            <div class="post-body preview text-gray-800 p-3" v-html="post.body" />
+            
+            <div class="bg-fade-to-white" />
         </div>
     </div>
 </template>

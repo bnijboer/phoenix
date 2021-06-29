@@ -2,26 +2,28 @@
     <layout-master>
         <template #header>Nieuw bericht</template>
         
-        <tiptap />
-
-        <!-- <form @submit.prevent="submit(form)">
+        <form @submit.prevent="submit">
             <div>
                 <form-label for="title" />
                 <form-input id="title" type="text" placeholder="Titel" class="mt-1 block w-full" v-model="form.title" required autofocus />
                 <validation-error :message="form.errors.title" />
             </div>
-
+            
             <div class="mt-4">
+                <tiptap ref="body" />
+            </div>
+
+            <!-- <div class="mt-4">
                 <form-label for="body" />
                 <form-input id="body" type="text" placeholder="Inhoud" class="mt-1 block w-full" v-model="form.body" required />
                 <validation-error :message="form.errors.body" />
-            </div>
+            </div> -->
 
-            <div class="mt-4">
+            <!-- <div class="mt-4">
                 <form-label for="image" />
                 <form-input id="image" type="file" class="mt-1 block w-full" @change="selectFile" />
                 <validation-error :message="form.errors.image" />
-            </div>
+            </div> -->
 
             <div class="mt-4 inline-flex" v-for="(tag, index) in form.tags" :key="index">
                 <form-label :for="`keyword${index}`" />
@@ -51,19 +53,19 @@
 
                 <submit-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Aanmaken</submit-button>
             </div>
-        </form> -->
+        </form>
     </layout-master>
 </template>
 
 <script>
     import { useForm } from '@inertiajs/inertia-vue3';
     import { format } from 'date-fns'
-    import BackLink from '@/Components/BackLink.vue';
+    import BackLink from '@/Components/BackLink';
     import FormInput from '@/Components/Input';
     import FormLabel from '@/Components/Label';
     import LayoutMaster from '@/Layouts/Master';
     import SubmitButton from '@/Components/Button';
-    import Tiptap from '@/components/Tiptap.vue'
+    import Tiptap from '@/components/Tiptap'
     import ValidationError from '@/Components/InputError';
 
     export default {
@@ -114,8 +116,10 @@
                 this.form.image = event.target.files[0];
             },
 
-            submit(form) {
-                form.post(route('posts.store'), form);
+            submit() {
+                this.form.body = this.$refs.body.editor.getHTML();
+                
+                this.form.post(route('posts.store'), this.form);
             },
         },
     }

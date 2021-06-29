@@ -10,7 +10,7 @@
                     </div>
                 </inertia-link>
 
-                <hr class="my-5">
+                <hr class="my-10">
             </div>
             
             <pagination class="mt-6" :links="posts.links" />

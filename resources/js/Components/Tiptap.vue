@@ -1,56 +1,44 @@
 <template>
-    <form @submit.prevent="submit(form)">
-        <div class="border border-dark rounded-lg p-4">
-            <div v-if="editor">
-                <button @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">bold</button>
-                <button @click="editor.chain().focus().toggleItalic().run()" :class="{ 'is-active': editor.isActive('italic') }">italic</button>
-                <button @click="editor.chain().focus().toggleStrike().run()" :class="{ 'is-active': editor.isActive('strike') }">strike</button>
-                
-                <button @click="editor.chain().focus().unsetAllMarks().run()">clear marks</button>
-                <button @click="editor.chain().focus().clearNodes().run()">clear nodes</button>
-                
-                <button @click="editor.chain().focus().setParagraph().run()" :class="{ 'is-active': editor.isActive('paragraph') }">paragraph</button>
-                <button @click="editor.chain().focus().setHorizontalRule().run()">horizontal rule</button>
-                <button @click="editor.chain().focus().setHardBreak().run()">hard break</button>
-                
-                <button @click="editor.chain().focus().toggleHeading({ level: 1 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }">h1</button>
-                <button @click="editor.chain().focus().toggleHeading({ level: 2 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }">h2</button>
-                <button @click="editor.chain().focus().toggleHeading({ level: 3 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 3 }) }">h3</button>
-                <button @click="editor.chain().focus().toggleHeading({ level: 4 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 4 }) }">h4</button>
-                <button @click="editor.chain().focus().toggleHeading({ level: 5 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 5 }) }">h5</button>
-                <button @click="editor.chain().focus().toggleHeading({ level: 6 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 6 }) }">h6</button>
-                
-                <button @click="editor.chain().focus().toggleBulletList().run()" :class="{ 'is-active': editor.isActive('bulletList') }">bullet list</button>
-                <button @click="editor.chain().focus().toggleOrderedList().run()" :class="{ 'is-active': editor.isActive('orderedList') }">ordered list</button>
-                <button @click="editor.chain().focus().toggleBlockquote().run()" :class="{ 'is-active': editor.isActive('blockquote') }">blockquote</button>
-                
-                <button @click="editor.chain().focus().undo().run()">undo</button>
-                <button @click="editor.chain().focus().redo().run()">redo</button>
-            </div>
+    <div class="border border-dark rounded-lg p-4">
+        <div v-if="editor">
+            <button type="button" @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }"><i class="fas fa-bold" /></button>
+            <button type="button" @click="editor.chain().focus().toggleItalic().run()" :class="{ 'is-active': editor.isActive('italic') }"><i class="fas fa-italic" /></button>
+            <button type="button" @click="editor.chain().focus().toggleStrike().run()" :class="{ 'is-active': editor.isActive('strike') }"><i class="fas fa-strikethrough" /></button>
             
-            <editor-content :editor="editor" />
+            <button type="button" @click="editor.chain().focus().setParagraph().run()" :class="{ 'is-active': editor.isActive('paragraph') }"><i class="fas fa-paragraph" /></button>
+            <button type="button" @click="editor.chain().focus().setHorizontalRule().run()">_</button>
+            <!-- <button type="button" @click="editor.chain().focus().setHardBreak().run()">hard break</button> -->
+            
+            <button type="button" @click="editor.chain().focus().toggleHeading({ level: 1 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }">H1</button>
+            <button type="button" @click="editor.chain().focus().toggleHeading({ level: 2 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }">H2</button>
+            <button type="button" @click="editor.chain().focus().toggleHeading({ level: 3 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 3 }) }">H3</button>
+            
+            <button type="button" @click="editor.chain().focus().toggleBulletList().run()" :class="{ 'is-active': editor.isActive('bulletList') }"><i class="fas fa-list-ul" /></button>
+            <button type="button" @click="editor.chain().focus().toggleOrderedList().run()" :class="{ 'is-active': editor.isActive('orderedList') }"><i class="fas fa-list-ol" /></button>
+            <button type="button" @click="editor.chain().focus().toggleBlockquote().run()" :class="{ 'is-active': editor.isActive('blockquote') }"><i class="fas fa-quote-left" /><i class="fas fa-quote-right" /></button>
+            
+            <button type="button" @click="editor.chain().focus().undo().run()"><i class="fas fa-undo" /></button>
+            <button type="button" @click="editor.chain().focus().redo().run()"><i class="fas fa-redo" /></button>
+            
+            <button type="button" @click="addImage"><i class="far fa-image" /></button>
+            
+            <button type="button" @click="editor.chain().focus().unsetAllMarks().run()">clear marks</button>
+            <button type="button" @click="editor.chain().focus().clearNodes().run()">clear nodes</button>
         </div>
         
-
-        <div class="flex justify-between mt-10">
-            <back-link />
-
-            <submit-button>Aanmaken</submit-button>
-        </div>
-    </form>
+        <editor-content :editor="editor" />
+    </div>
 </template>
 
 <script>
     import { Editor, EditorContent } from '@tiptap/vue-3'
-    import BackLink from '@/Components/BackLink.vue';
+    import Dropcursor from '@tiptap/extension-dropcursor'
+    import Image from '@tiptap/extension-image'
     import StarterKit from '@tiptap/starter-kit'
-    import SubmitButton from '@/Components/Button';
 
     export default {
         components: {
-            BackLink,
             EditorContent,
-            SubmitButton,
         },
 
         props: {
@@ -77,12 +65,24 @@
                 this.editor.commands.setContent(this.modelValue, false);
             },
         },
+        
+        methods: {
+            addImage() {
+                const url = window.prompt('URL')
+
+                if (url) {
+                    this.editor.chain().focus().setImage({ src: url }).run()
+                }
+            },
+        },
 
         mounted() {
             this.editor = new Editor({
                 content: this.modelValue,
                 extensions: [
-                    StarterKit
+                    Dropcursor,
+                    Image,
+                    StarterKit,
                 ],
                 editorProps: {
                     attributes: {
@@ -90,23 +90,29 @@
                     },
                 },
                 content: `
-                    <p>Hi there!</p>
+                    <p>This is a basic example of implementing images. Drag to re-order.</p>
+                    <img src="https://source.unsplash.com/8xznAGy4HcY/800x400" />
+                    <img src="https://source.unsplash.com/K9QHL52rE2k/800x400" />
                 `,
-                onUpdate: () => {
-                    this.$emit('update:modelValue', this.editor.getHTML())
-                },
+                // onUpdate: () => {
+                //     this.$emit('update:modelValue', this.editor.getHTML())
+                // },
             });
         },
 
         beforeDestroy() {
             this.editor.destroy();
         },
-
-        methods: {
-            submit(form) {
-                // form.post(route('posts.store'), form);
-                console.log(this.editor.getHTML());
-            },
-        },
     }
 </script>
+
+<style scoped>
+    i {
+        margin: 5px;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
