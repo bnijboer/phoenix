@@ -5,12 +5,10 @@
         <div v-if="posts.data.length">
             <div v-for="post in posts.data" :key="post.id">
                 <inertia-link :href="route('posts.show', post)">
-                    <div class="preview">
-                        <post :post="post" />
-                    </div>
+                    <post :post="post" preview />
                 </inertia-link>
 
-                <hr class="my-10">
+                <hr class="mt-14 mb-10">
             </div>
             
             <pagination class="mt-6" :links="posts.links" />
@@ -35,6 +33,6 @@
 
         props: {
             posts: Object,
-        }
+        },
     }
 </script>

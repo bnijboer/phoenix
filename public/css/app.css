@@ -763,6 +763,25 @@ h3 {
   line-height: 1.75rem;
 }
 
+.preview:hover .post-date {
+  --tw-border-opacity: 1;
+  border-color: rgba(139, 92, 246, var(--tw-border-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(75, 85, 99, var(--tw-text-opacity))
+}
+
+.preview:hover .post-title {
+  --tw-bg-opacity: 1;
+  background-color: rgba(196, 181, 253, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(31, 41, 55, var(--tw-text-opacity))
+}
+
+.preview:hover .post-body {
+  --tw-text-opacity: 1;
+  color: rgba(0, 0, 0, var(--tw-text-opacity));
+}
+
 .container {
   width: 100%;
 }
@@ -32791,6 +32810,7 @@ footer {
 
 .preview {
   position: relative;
+  min-height: 150px;
   max-height: 300px;
   overflow: hidden;
 }
@@ -32798,7 +32818,6 @@ footer {
 .post-header {
   width: 100%;
   position: relative;
-  margin-bottom: 30px;
   height: 50px;
 }
 

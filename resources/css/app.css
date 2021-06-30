@@ -18,6 +18,20 @@
     h3 {
         @apply text-xl;
     }
+    
+    .preview:hover .post-date {
+        @apply border-purple-500;
+        @apply text-gray-600
+    }
+    
+    .preview:hover .post-title {
+        @apply bg-purple-300;
+        @apply text-gray-800
+    }
+    
+    .preview:hover .post-body {
+        @apply text-black;
+    }
 }
 
 
@@ -47,6 +61,7 @@ footer {
 
 .preview {
     position: relative;
+    min-height: 150px;
     max-height: 300px;
     overflow: hidden;
 }
@@ -54,7 +69,6 @@ footer {
 .post-header {
     width: 100%;
     position: relative;
-    margin-bottom: 30px;
     height: 50px;
 }
 
