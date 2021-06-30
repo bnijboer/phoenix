@@ -14,29 +14,23 @@
             <navigation />
         </nav>
 
-        <section>
-            <div class="flex bg-gradient-overlay">
-                <main class="w-full">
-                    <div class="py-12">
-                        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-                            <div class="bg-white shadow-md overflow-hidden shadow-sm sm:rounded-lg">
-                                <div class="p-6 bg-white border-b border-gray-200">
-                                    <slot />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
+        <section class="flex bg-gradient-overlay antialiased pb-14">
+            <main class="mx-auto max-w-2xl bg-white border-b border-gray-200 sm:rounded-b-lg px-3 sm:px-6 py-12">
+                <div class="overflow-hidden">
+                    <slot />
+                </div>
+            </main>
 
-                <!-- <section class="hidden md:block w-96"> -->
-                    <!-- <biography /> -->
-                <!-- </section> -->
-            </div>
+            <section class="hidden lg:block w-96">
+                <div class="bg-white rounded-bl-lg px-6 py-12">
+                    <biography />
+                </div>
+            </section>
         </section>
     </div>
 
-    <footer class="bg-white">
-        <div class="text-center p-4">Footer</div>
+    <footer class="flex flex-col justify-center">
+        <div class="text-sm text-center text-gray-500 font-extralight tracking-wider ml-auto pr-4">&copy; 2021 BN</div>
     </footer>
 </template>
 

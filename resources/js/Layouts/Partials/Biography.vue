@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white p-4">
+    <div>
         Biography
     </div>
 </template>

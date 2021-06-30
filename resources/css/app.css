@@ -38,13 +38,24 @@
 
 /* General */
 
-html, body {
+html {
     min-height: 100vh;
 }
 
+body {
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+}
+
+body::after {
+    display: block;
+    height: 50px;
+  }
+
 .wrapper {
-    min-height: calc(100vh - 70px);
     background-image: url('/images/background.jpg');
+    background-size: cover;
 }
 
 .bg-gradient-overlay {
@@ -52,7 +63,10 @@ html, body {
 }
 
 footer {
-    height: 70px;
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
 }
 
 

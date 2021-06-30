@@ -24,7 +24,6 @@
 
     export default {
         props: {
-            hovered: Boolean,
             preview: Boolean,
             post: Object,
         },
