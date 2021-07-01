@@ -9,14 +9,21 @@
 @layer base {
     h1 {
         @apply text-3xl;
+        @apply py-2;
     }
     
     h2 {
         @apply text-2xl;
+        @apply py-2;
     }
     
     h3 {
         @apply text-xl;
+        @apply py-2;
+    }
+    
+    p {
+        @apply py-2;
     }
     
     .preview:hover .post-date {
@@ -31,6 +38,10 @@
     
     .preview:hover .post-body {
         @apply text-black;
+    }
+    
+    .post-title {
+        @apply font-serif;
     }
 }
 
@@ -95,14 +106,10 @@ footer {
 }
 
 .post-title {
-    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
     margin-top: 20px;
     padding: 14px 0 14px 100px;
     z-index: 9;
-}
-
-.post-body {
-    font-family: 'Raleway', sans-serif;
 }
 
 .bg-fade-to-white { 

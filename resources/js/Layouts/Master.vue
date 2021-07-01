@@ -1,7 +1,5 @@
 <template>
     <div class="wrapper">
-        <top-bar />
-
         <header class="flex bg-white pt-8">
             <div v-if="$slots.header" class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -10,20 +8,26 @@
             </div>
         </header>
         
-        <nav class="bg-white">
+        <nav class="lg:hidden bg-white">
             <navigation />
         </nav>
 
         <section class="flex bg-gradient-overlay antialiased pb-14">
-            <main class="mx-auto max-w-2xl bg-white border-b border-gray-200 sm:rounded-b-lg px-3 sm:px-6 py-12">
+            <main class="mx-auto w-full sm:w-5/6 md:w-3/4 lg:w-1/2 bg-white border-b border-gray-200 sm:rounded-b-lg px-3 sm:px-6 md:px-9 lg:px-12 py-12">
                 <div class="overflow-hidden">
                     <slot />
                 </div>
             </main>
 
-            <section class="hidden lg:block w-96">
-                <div class="bg-white rounded-bl-lg px-6 py-12">
-                    <biography />
+            <section class="hidden lg:block w-1/3">
+                <div class="bg-white p-12">
+                    <navigation />
+                    
+                    <div v-if="route().current() !== 'about'">
+                        <hr class="my-8">
+                        
+                        <biography />
+                    </div>
                 </div>
             </section>
         </section>
@@ -37,13 +41,11 @@
 <script>
     import Biography from '@/Layouts/Partials/Biography';
     import Navigation from '@/Layouts/Partials/Navigation';
-    import TopBar from '@/Layouts/Partials/TopBar';
 
     export default {
         components: {
             Biography,
             Navigation,
-            TopBar,
         },
     }
 </script>

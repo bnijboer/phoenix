@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="form.get(route('search'))">
-        <div class="bg-white flex p-4">
+        <div class="flex">
             <div>
                 <form-label for="query" />
                 <form-input id="query" type="search" placeholder="Zoekterm(en)" v-model="form.query" required />
