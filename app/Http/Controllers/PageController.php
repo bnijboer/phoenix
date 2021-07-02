@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Inertia\Response;
 
 class PageController extends Controller
@@ -9,11 +10,11 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @return Response The HTML server response.
+     * @return RedirectResponse
      */
-    public function landing(): Response
+    public function home(): RedirectResponse
     {
-        return inertia('Landing');
+        return redirect()->route('posts.index');
     }
 
     /**

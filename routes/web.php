@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Navbar pages routes
-Route::get('/',         [PageController::class, 'landing'])->name('landing');
+Route::get('/',         [PageController::class, 'home'])->name('home');
 Route::get('/about',    [PageController::class, 'about'])->name('about');
 Route::get('/admin',    [PageController::class, 'admin'])->name('admin');
 

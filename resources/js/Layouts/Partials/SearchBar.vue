@@ -7,9 +7,9 @@
                 <validation-error :message="form.errors.query" />
             </div>
             
-            <div class="ml-2">
-                <submit-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing" class="h-full">
-                    Zoeken
+            <div>
+                <submit-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing" class="h-full ml-1">
+                    <i class="fas fa-search" />
                 </submit-button>
             </div>
         </div>
