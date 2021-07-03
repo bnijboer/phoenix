@@ -1,22 +1,18 @@
 <template>
-    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
+    <div class="flex justify-center mt-8">
         <div class="w-80">
-            <div class="mb-4 text-sm text-gray-600">
-                Dit is een beveiligd onderdeel. Geef je wachtwoord op om door te kunnen gaan.
-            </div>
+            <div class="mb-5 text-sm text-gray-600">Dit is een beveiligd onderdeel. Geef je wachtwoord op om door te kunnen gaan.</div>
 
             <breeze-validation-errors class="mb-4" />
 
             <form @submit.prevent="submit">
                 <div>
-                    <breeze-label for="password" value="Password" />
+                    <breeze-label for="password" value="Wachtwoord" />
                     <breeze-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" autofocus />
                 </div>
 
                 <div class="flex justify-end mt-4">
-                    <breeze-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        Bevestigen
-                    </breeze-button>
+                    <breeze-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Bevestigen</breeze-button>
                 </div>
             </form>
         </div>

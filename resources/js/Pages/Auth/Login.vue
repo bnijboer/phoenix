@@ -1,20 +1,22 @@
 <template>
-    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
+    <div class="flex justify-center mt-8">
         <div class="w-80">
+            <div class="text-center mb-5">
+                <h2>Inloggen</h2>
+            </div>
+            
             <breeze-validation-errors class="mb-4" />
 
-            <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-                {{ status }}
-            </div>
+            <div v-if="status" class="mb-4 font-medium text-sm text-green-600">{{ status }}</div>
 
             <form @submit.prevent="submit">
                 <div>
-                    <breeze-label for="email" value="Email" />
+                    <breeze-label for="email" value="E-mail" />
                     <breeze-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
                 </div>
 
                 <div class="mt-4">
-                    <breeze-label for="password" value="Password" />
+                    <breeze-label for="password" value="Wachtwoord" />
                     <breeze-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
                 </div>
 
@@ -26,13 +28,9 @@
                 </div>
 
                 <div class="flex items-center justify-end mt-4">
-                    <inertia-link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                        Wachtwoord vergeten?
-                    </inertia-link>
+                    <inertia-link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">Wachtwoord vergeten?</inertia-link>
 
-                    <breeze-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        Inloggen
-                    </breeze-button>
+                    <breeze-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Inloggen</breeze-button>
                 </div>
             </form>
         </div>

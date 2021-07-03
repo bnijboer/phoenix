@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <nav class="fixed w-screen bg-white px-3 py-6 z-10">
+        <nav class="fixed lg:static w-screen bg-white px-3 py-6 z-10">
             <div class="flex justify-between px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-shrink-0 items-center">
                     <inertia-link :href="route('home')">
@@ -18,18 +18,22 @@
                 </div>
             </div>
 
-            <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="w-72 border border-gray-200 shadow-lg rounded-lg p-4 mt-1 mr-2 ml-auto">
+            <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="absolute top-18 right-7 w-72 bg-white border border-gray-200 shadow-lg rounded-lg p-4 mr-2 ml-auto">
                 <nav-links />
             </div>
         </nav>
         
-        <header v-if="$slots.header" class="bg-white text-center pt-32 pb-6">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                <slot name="header" />
-            </h2>
+        <header class="bg-white text-center pb-6">
+            <div class="w-96 mx-auto">
+                <img src="/images/header.jpg">
+            </div>
+            
+            <div class="mx-auto">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">The Goddess In Me</h2>
+            </div>
         </header>
 
-        <section class="flex bg-gradient-to-b from-white to-transparent antialiased pb-14">
+        <section class="flex items-start bg-gradient-to-b from-white to-transparent antialiased pb-14">
             <main class="mx-auto w-full sm:w-5/6 md:w-3/4 lg:w-1/2 bg-white border-b border-gray-200 sm:rounded-b-lg px-3 sm:px-6 md:px-9 lg:px-12 py-12">
                 <div class="overflow-hidden">
                     <slot />
@@ -50,7 +54,7 @@
         </section>
     </div>
 
-    <footer class="flex flex-col justify-center">
+    <footer class="flex items-center">
         <div class="text-sm text-center text-gray-500 font-extralight tracking-wider ml-auto pr-4">&copy; 2021 BN</div>
     </footer>
 </template>

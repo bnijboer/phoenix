@@ -1,6 +1,10 @@
 <template>
-    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
+    <div class="flex justify-center mt-8">
         <div class="w-80">
+            <div class="text-center mb-5">
+                <h2>Account aanmaken</h2>
+            </div>
+            
             <breeze-validation-errors class="mb-4" />
 
             <form @submit.prevent="submit">
@@ -35,13 +39,9 @@
                 </div>
 
                 <div class="flex items-center justify-end mt-4">
-                    <inertia-link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                        Heb je al een account?
-                    </inertia-link>
+                    <inertia-link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">Heb je al een account?</inertia-link>
 
-                    <breeze-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        Registreren
-                    </breeze-button>
+                    <breeze-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Registreren</breeze-button>
                 </div>
             </form>
         </div>

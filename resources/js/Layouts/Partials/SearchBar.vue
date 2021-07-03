@@ -1,9 +1,9 @@
 <template>
     <form @submit.prevent="form.get(route('search'))">
         <div class="flex">
-            <div>
+            <div class="w-full">
                 <form-label for="query" />
-                <form-input id="query" type="search" placeholder="Zoekterm(en)" v-model="form.query" required />
+                <form-input :class="'w-full'" id="query" type="search" placeholder="Zoekterm(en)" v-model="form.query" required />
                 <validation-error :message="form.errors.query" />
             </div>
             
