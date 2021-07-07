@@ -22,7 +22,7 @@ class SearchController extends Controller
                      ->orWhereHas('tags', function (Builder $query) use ($searchTerm) {
                         $query->where('keyword', 'like', "%$searchTerm%");
                     })
-                    ->latest()
+                    ->latest('published_at')
                     ->paginate(10);
 
         return inertia('Posts/Index', compact('posts'));

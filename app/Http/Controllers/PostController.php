@@ -30,7 +30,7 @@ class PostController extends Controller
      */
     public function index(Tag $tag = null): Response
     {
-        $posts = Post::latest()->paginate(10);
+        $posts = Post::latest('published_at')->paginate(10);
         
         return inertia('Posts/Index', compact('posts'));
     }
