@@ -7,18 +7,15 @@
 
 @layer base {
     h1 {
-        @apply text-3xl;
-        @apply py-2;
+        @apply text-3xl py-2;
     }
     
     h2 {
-        @apply text-2xl;
-        @apply py-2;
+        @apply text-2xl py-2;
     }
     
     h3 {
-        @apply text-xl;
-        @apply py-2;
+        @apply text-xl py-2;
     }
     
     p {
@@ -26,13 +23,11 @@
     }
     
     .preview:hover .post-date {
-        @apply border-purple-500;
-        @apply text-gray-600
+        @apply border-purple-500 text-gray-600
     }
     
     .preview:hover .post-title {
-        @apply bg-purple-300;
-        @apply text-gray-800
+        @apply bg-purple-300 text-gray-800
     }
     
     .preview:hover .post-body {
@@ -41,6 +36,32 @@
     
     .post-title {
         @apply font-serif;
+    }
+}
+
+@layer utilities {
+    .btn {
+        @apply inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:outline-none transition ease-in-out duration-150;
+    }
+    
+    .btn-blue {
+        @apply bg-blue-400 hover:bg-blue-700 focus:border-blue-700;
+    }
+    
+    .btn-red {
+        @apply bg-red-500 hover:bg-red-700 focus:border-red-700;
+    }
+    
+    .btn-yellow {
+        @apply bg-yellow-400 hover:bg-yellow-600 focus:border-yellow-600;
+    }
+    
+    .btn-green {
+        @apply bg-green-400 hover:bg-green-700 focus:border-green-700;
+    }
+    
+    .navlink {
+        @apply inline-flex items-center pb-2 border-b-2 border-transparent font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out;
     }
 }
   
@@ -60,11 +81,19 @@ body {
 body::after {
     display: block;
     height: 50px;
-  }
+}
 
 .wrapper {
     background-image: url('/images/background.jpg');
     background-size: cover;
+}
+
+.banner {
+    background-image: url('/images/banner.jpg');
+    background-position: 30% 100%;
+    background-size: cover;
+    width: 100%;
+    height: 300px;
 }
 
 footer {

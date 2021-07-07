@@ -23,19 +23,19 @@
             </div>
         </nav>
         
-        <header class="bg-white text-center pb-6">
-            <div class="w-96 mx-auto">
-                <img src="/images/header.jpg">
-            </div>
-            
-            <div class="mx-auto">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">The Goddess In Me</h2>
-            </div>
+        <header class="flex justify-center bg-white text-center pb-6">
+            <banner />
         </header>
 
-        <section class="flex items-start bg-gradient-to-b from-white to-transparent antialiased pb-14">
-            <main class="mx-auto w-full sm:w-5/6 md:w-3/4 lg:w-1/2 bg-white border-b border-gray-200 sm:rounded-b-lg px-3 sm:px-6 md:px-9 lg:px-12 py-12">
+        <section class="flex items-start justify-center bg-gradient-to-b from-white to-transparent antialiased pb-14">
+            <main class="w-full sm:w-5/6 md:w-3/4 lg:w-1/2 bg-white px-3 sm:px-6 md:px-9 lg:px-12 py-12">
                 <div class="overflow-hidden">
+                    <div class="banner flex flex-col justify-center mb-10">
+                        <div class="lg:hidden">
+                            <banner />
+                        </div>
+                    </div>
+                    
                     <slot />
                 </div>
             </main>
@@ -44,7 +44,7 @@
                 <div class="bg-white p-12">
                     <nav-links />
                     
-                    <div v-if="! route().current('about')">
+                    <div v-if="! route().current('about')" class="pl-8">
                         <hr class="my-8">
                         
                         <biography />
@@ -61,12 +61,14 @@
 
 <script>
     import ApplicationLogo from '@/Components/ApplicationLogo';
+    import Banner from '@/Layouts/Partials/Banner';
     import Biography from '@/Layouts/Partials/Biography';
     import NavLinks from '@/Layouts/Partials/NavLinks';
 
     export default {
         components: {
             ApplicationLogo,
+            Banner,
             Biography,
             NavLinks,
         },

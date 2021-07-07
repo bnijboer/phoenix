@@ -48,7 +48,7 @@
         <div class="flex justify-between mt-10">
             <back-link />
 
-            <submit-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Aanmaken</submit-button>
+            <submit-button :class="['btn-green', { 'opacity-25': form.processing }]" :disabled="form.processing">Aanmaken</submit-button>
         </div>
     </form>
 </template>

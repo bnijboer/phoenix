@@ -29,6 +29,9 @@ Route::resource('posts', PostController::class);
 // Comment section routes
 Route::resource('posts.comments', PostCommentController::class)->only(['store', 'destroy']);
 
+// Previous / next posts
+Route::get('/posts/{post}/previous', [PostController::class, 'previous'])->name('posts.previous');
+
 // Tag routes
 Route::get('/tags/{tag}', TagController::class)->name('tags.show');
 

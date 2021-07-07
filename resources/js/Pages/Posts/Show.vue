@@ -7,15 +7,19 @@
         <back-link />
         
         <div v-if="owner" class="flex justify-end">
-            <inertia-link :href="route('posts.edit', post)" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150">
-                Bewerken
-            </inertia-link>
+            <inertia-link :href="route('posts.edit', post)" class="btn btn-yellow">Bewerken</inertia-link>
             
             <form @submit.prevent="form.delete(route('posts.destroy', post))">
-                <submit-button class="ml-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Verwijderen</submit-button>
+                <submit-button class="btn-red ml-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Verwijderen</submit-button>
             </form>
         </div>
     </div>
+    
+    <!-- <div class="text-center">
+        <inertia-link :href="route('posts.show', this.previousPost)" class="btn btn-blue">Vorige post</inertia-link>
+    
+        {{ previousPost }}
+    </div> -->
     
     <comments :post="post" />
 </template>
@@ -59,6 +63,11 @@
             user() {
                 return this.$page.props.auth.user;
             },
+            
+            previousPost() {
+                axios.get(route('posts.previous', this.post))
+                    .then(response => {return response.data});
+            }
         }
     }
 </script>

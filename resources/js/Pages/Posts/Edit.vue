@@ -7,10 +7,14 @@
         </div>
 
         <div class="mt-4">
+            <tiptap ref="body" />
+        </div>
+        
+        <!-- <div class="mt-4">
             <form-label for="body" />
             <form-input id="body" type="text" placeholder="Inhoud" class="mt-1 block w-full" v-model="form.body" required />
             <validation-error :message="form.errors.body" />
-        </div>
+        </div> -->
 
         <div class="mt-4 inline-flex" v-for="(tag, index) in form.tags" :key="index">
             <form-label :for="`keyword${index}`" />
@@ -38,9 +42,7 @@
         <div class="flex justify-between mt-10">
             <back-link />
 
-            <submit-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Opslaan
-            </submit-button>
+            <submit-button :class="['btn-green', { 'opacity-25': form.processing }]" :disabled="form.processing">Opslaan</submit-button>
         </div>
     </form>
 </template>
@@ -52,6 +54,7 @@
     import FormInput from '@/Components/Input';
     import FormLabel from '@/Components/Label';
     import SubmitButton from '@/Components/Button';
+    import Tiptap from '@/components/Tiptap'
     import ValidationError from '@/Components/InputError';
 
     export default {
@@ -60,6 +63,7 @@
             FormInput,
             FormLabel,
             SubmitButton,
+            Tiptap,
             ValidationError,
         },
 

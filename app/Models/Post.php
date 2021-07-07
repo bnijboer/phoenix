@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Scopes\PublishedScope;
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -113,7 +114,7 @@ class Post extends Model
     {
         $keywords = collect($tags)->pluck('keyword')->filter();
         
-        $this->removeUnused($keywords);
+        $this->removeUnusedTags($keywords);
         
         !count($keywords) ?: $this->addTags($keywords);
     }
@@ -142,7 +143,7 @@ class Post extends Model
      *
      * @param Collection $keywords
      */
-    private function removeUnused(Collection $keywords)
+    private function removeUnusedTags(Collection $keywords)
     {
         foreach ($this->tags as $tag) {
             if (! $keywords->contains($tag->keyword)) {
@@ -150,6 +151,16 @@ class Post extends Model
                 
                 count($tag->posts) ?: $tag->delete();
             }
+        }
+    }
+
+    /**
+     * Publishes a post if it is scheduled for today.
+     */
+    public function publishIfDue()
+    {   
+        if (Carbon::parse($this->published_at)->isToday()) {
+            $this->update(['is_published' => true]);
         }
     }
 }
