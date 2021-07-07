@@ -4,7 +4,7 @@
 
         <nav-link :href="route('about')" :active="route().current('about')" :class="'lg:hidden'">Over mij</nav-link>
         
-        <nav-link v-if="owner" :href="route('posts.create')" :active="route().current('posts.create')">Nieuwe blog</nav-link>
+        <nav-link v-if="owner" :href="route('posts.create')" :active="route().current('posts.create')">Nieuwe blogpost</nav-link>
         
         <template v-if="user">
             <div class="py-2">

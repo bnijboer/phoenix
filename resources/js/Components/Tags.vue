@@ -1,10 +1,10 @@
 <template>
-    <div class="text-gray-600">
-        <p class="mb-1">Tags:</p>
+    <div class="text-gray-400">
+        <span class="font-semibold mr-2">Tags:</span>
         
         <div v-for="tag in tags" :key="tag.keyword" class="inline-flex">
             <inertia-link :href="route('tags.show', tag)">
-                <div class="border rounded capitalize p-2 mr-1">{{ tag.keyword }}</div>
+                <div class="border rounded capitalize p-2 mr-1 hover:text-gray-600">{{ tag.keyword }}</div>
             </inertia-link>
         </div>
     </div>

@@ -1,13 +1,7 @@
 <template>
-    <div class="text-gray-600">
-        <inertia-link :href="route('posts.index')">
-            <i class="fas fa-angle-double-left" />
+    <div>
+        <inertia-link :href="route('posts.index')" :class="'btn btn-blue'">
+            <i class="fas fa-angle-double-left" />&#160; Terug
         </inertia-link>
     </div>
 </template>
-
-<script>
-    export default {
-        //
-    }
-</script>

@@ -27,9 +27,14 @@
             <form-input :id="`keyword${index}`" type="text" :placeholder="`Tag ${index + 1}`" v-model="tag.keyword" class="capitalize" />
             <validation-error :message="form.errors.tags" />
 
-            <div>
-                <i class="fas fa-minus-circle" @click="removeTag(index)" v-show="index || (!index && form.tags.length > 1)" />
-                <i class="fas fa-plus-circle" @click="addTag()" v-show="index === form.tags.length - 1" />
+            <div class="mx-1">
+                <button @click="removeTag(index)" v-show="index || (!index && form.tags.length > 1)" class="text-red-500 hover:text-red-700">
+                    <i class="fas fa-minus-circle" />
+                </button>
+                
+                <button @click="addTag()" v-show="index === form.tags.length - 1" class="text-green-500 hover:text-green-700 ml-1">
+                    <i class="fas fa-plus-circle" />
+                </button>
             </div>
         </div>
 

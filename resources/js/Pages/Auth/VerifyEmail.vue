@@ -7,9 +7,9 @@
 
             <form @submit.prevent="submit">
                 <div class="mt-4 flex items-center justify-between">
-                    <breeze-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Stuur verificatie e-mail opnieuw</breeze-button>
+                    <breeze-button :class="['btn-green', { 'opacity-25': form.processing }]" :disabled="form.processing">Stuur verificatie e-mail opnieuw</breeze-button>
 
-                    <inertia-link :href="route('logout')" method="post" as="button" class="underline text-sm text-gray-600 hover:text-gray-900">Log Out</inertia-link>
+                    <inertia-link :href="route('logout')" method="post" as="button" class="btn btn-blue">Log Out</inertia-link>
                 </div>
             </form>
         </div>

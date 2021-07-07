@@ -38,10 +38,10 @@
                     <breeze-input id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
                 </div>
 
-                <div class="flex items-center justify-end mt-4">
+                <div class="flex items-center justify-between mt-4">
                     <inertia-link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">Heb je al een account?</inertia-link>
 
-                    <breeze-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Registreren</breeze-button>
+                    <breeze-button :class="['btn-green', { 'opacity-25': form.processing }]" :disabled="form.processing">Registreren</breeze-button>
                 </div>
             </form>
         </div>

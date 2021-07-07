@@ -1,9 +1,9 @@
 <template>
     <div class="flex justify-between text-gray-600 text-sm">
-        <div class="flex">
-            <img :src="comment.user.avatar" class="rounded-full mr-2" height="25" width="25" />
+        <div class="flex pt-1">
+            <!-- <img :src="comment.user.avatar" class="rounded-full mr-2" height="25" width="25" /> -->
             
-            <div class="font-bold pt-1">{{ comment.user.username }}</div>   
+            van&#160;<span class="font-bold">{{ comment.user.username }}</span>   
         </div>
         
         <div class="italic">{{ formattedDate }} geleden</div>
@@ -12,8 +12,8 @@
     <div class="text-gray-800 my-5">{{ comment.content }}</div>
     
     <div v-if="comment.user.id === user.id" class="flex justify-end text-gray-600 text-sm mb-3">
-        <button @click.prevent="remove">
-            <i class="fas fa-trash"/>
+        <button @click.prevent="remove" class="text-red-500 hover:text-red-700">
+            <i class="fas fa-trash" />
         </button>
     </div>
 </template>

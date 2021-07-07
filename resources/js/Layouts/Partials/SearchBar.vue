@@ -8,7 +8,7 @@
             </div>
             
             <div>
-                <submit-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing" class="h-full ml-1">
+                <submit-button :class="['btn-blue h-full ml-1', { 'opacity-25': form.processing }]" :disabled="form.processing">
                     <i class="fas fa-search" />
                 </submit-button>
             </div>

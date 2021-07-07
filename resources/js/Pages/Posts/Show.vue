@@ -1,6 +1,8 @@
 <template>
     <post :post="post" />
     
+    <hr class="my-4">
+    
     <tags v-show="post.tags.length" :tags="post.tags" />
     
     <div class="flex justify-between mt-10">
@@ -10,7 +12,7 @@
             <inertia-link :href="route('posts.edit', post)" class="btn btn-yellow">Bewerken</inertia-link>
             
             <form @submit.prevent="form.delete(route('posts.destroy', post))">
-                <submit-button class="btn-red ml-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Verwijderen</submit-button>
+                <submit-button :class="['btn-red ml-2', { 'opacity-25': form.processing }]" :disabled="form.processing">Verwijderen</submit-button>
             </form>
         </div>
     </div>

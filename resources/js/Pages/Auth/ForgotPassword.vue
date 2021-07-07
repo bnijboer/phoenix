@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="flex items-center justify-end mt-4">
-                    <breeze-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Stuur mij een link</breeze-button>
+                    <breeze-button :class="['btn-green', { 'opacity-25': form.processing }]" :disabled="form.processing">Stuur mij een link</breeze-button>
                 </div>
             </form>
         </div>

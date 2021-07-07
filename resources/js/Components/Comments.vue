@@ -16,12 +16,8 @@
                     </div>
                 </div>
                 <div v-else class="text-center">
-                    <div v-if="!owner">
-                        Hé {{ user.username }}, wat vind je van deze blogpost?
-                    </div>
-                    <div v-else>
-                        Er zijn nog geen reacties.
-                    </div>
+                    <div v-if="!owner">Hé {{ user.username }}, wat vind je van deze blogpost?</div>
+                    <div v-else>Er zijn nog geen reacties.</div>
                     
                     <hr class="mt-8">
                 </div>
@@ -34,7 +30,7 @@
                     </div>
                     
                     <div class="flex justify-end mt-3">
-                        <submit-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Reageren</submit-button>
+                        <submit-button :class="['btn-blue ml-2', { 'opacity-25': form.processing }]" :disabled="form.processing">Reageren</submit-button>
                     </div>
                 </form>
             </div>
@@ -42,7 +38,7 @@
                 <div>Registreer om te kunnen reageren en reacties te lezen.</div>
                 
                 <div>
-                    <inertia-link :href="route('register')" class="ml-4 text-lg text-gray-700 underline">Registeren</inertia-link>
+                    <inertia-link :href="route('register')" class="btn btn-blue mt-3">Registeren</inertia-link>
                 </div>
             </div>
         </div>

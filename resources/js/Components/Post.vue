@@ -1,6 +1,6 @@
 <template>
     <div :class="isPreview ? 'preview' : ''">
-        <div v-if="unpublished" class="text-center text-gray-700 font-bold bg-red-300 rounded-md p-3 mb-3">Nog niet gepubliceerd</div>
+        <div v-if="isUnpublished" class="text-center text-red-700 uppercase font-bold p-3 mb-3">Nog niet gepubliceerd</div>
         
         <div class="flex post-header" :class="isPreview ? 'mb-9' : 'mb-12'">
             <div class="post-date w-16 tracking-widest text-gray-500 font-bold border-4 border-purple-400 rounded-sm">{{ date }}</div>
@@ -41,7 +41,7 @@
                 return this.preview;
             },
             
-            unpublished() {
+            isUnpublished() {
                 return isFuture(parseISO(this.post.published_at));
             }
         }
