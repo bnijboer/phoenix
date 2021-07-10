@@ -3,15 +3,16 @@
         <div class="w-80">
             <div class="mb-5 text-sm text-gray-600">Dit is een beveiligd onderdeel. Geef je wachtwoord op om door te kunnen gaan.</div>
 
-            <breeze-validation-errors class="mb-4" />
-
             <form @submit.prevent="submit">
                 <div>
                     <breeze-label for="password" value="Wachtwoord" />
-                    <breeze-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" autofocus />
+                    
+                    <breeze-input id="password" type="password" class="form-input" v-model="form.password" required autofocus />
+                    
+                    <validation-error :message="form.errors.password" />
                 </div>
 
-                <div class="flex justify-end mt-4">
+                <div class="flex justify-end mt-6">
                     <breeze-button :class="['btn-green', { 'opacity-25': form.processing }]" :disabled="form.processing">Bevestigen</breeze-button>
                 </div>
             </form>
@@ -23,14 +24,14 @@
     import BreezeButton from '@/Components/Button'
     import BreezeInput from '@/Components/Input'
     import BreezeLabel from '@/Components/Label'
-    import BreezeValidationErrors from '@/Components/ValidationErrors'
+    import ValidationError from '@/Components/InputError';
 
     export default {
         components: {
             BreezeButton,
             BreezeInput,
             BreezeLabel,
-            BreezeValidationErrors,
+            ValidationError,
         },
 
         data() {

@@ -57,28 +57,4 @@ class PostPolicy
     {
         return $user->id === $post->user_id;
     }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param User $user
-     * @param Post $post
-     * @return bool
-     */
-    public function restore(User $user, Post $post)
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param User $user
-     * @param Post $post
-     * @return bool
-     */
-    public function forceDelete(User $user, Post $post)
-    {
-        return false;
-    }
 }

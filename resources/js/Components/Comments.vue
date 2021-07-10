@@ -25,7 +25,9 @@
                 <form class="mt-5" @submit.prevent="submit(form)" ref="comment">
                     <div>
                         <form-label for="content" />
-                        <form-input id="content" type="text" placeholder="Bericht" class="mt-1 block w-full" v-model="form.content" required />
+                        
+                        <form-input id="content" type="text" placeholder="Bericht" class="form-input" v-model="form.content" required />
+                        
                         <validation-error :message="form.errors.content" />
                     </div>
                     
@@ -35,11 +37,9 @@
                 </form>
             </div>
             <div v-else class="text-center">
-                <div>Registreer om te kunnen reageren en reacties te lezen.</div>
+                Registreer om te kunnen reageren en reacties te lezen.
                 
-                <div>
-                    <inertia-link :href="route('register')" class="btn btn-blue mt-3">Registeren</inertia-link>
-                </div>
+                <inertia-link :href="route('register')" class="btn btn-blue mt-3">Registeren</inertia-link>
             </div>
         </div>
     </div>

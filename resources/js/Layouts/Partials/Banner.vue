@@ -1,7 +1,7 @@
 <template>
-    <div class="text-center">
-        <h1 class="font-semibold text-gray-100 lg:text-gray-800 uppercase text-white tracking-widest">The Goddess In Me</h1>
+    <div class="font-cursive text-center">
+        <div class="font-semibold text-5xl text-gray-100 lg:text-gray-700 text-white tracking-widest">The Goddess In Me</div>
         
-        <span class="text-gray-300 lg:text-gray-600 text-sm tracking-wide italic">My dreams may be SCAttered, but my hopes are not.</span>
+        <div class="text-gray-300 text-lg lg:text-gray-600 tracking-wide mt-2">My dreams may be SCAttered, but my hopes are not.</div>
     </div>
 </template>

@@ -37,6 +37,15 @@ class Post extends Model
     protected $casts = [
         'is_published' => 'boolean',
     ];
+        
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'permissions',
+    ];
 
     /**
      * The "booted" method of the model.
@@ -69,6 +78,21 @@ class Post extends Model
 
             return true;
         });
+    }
+    
+    /**
+     * Returns policy permissions for the model.
+     *
+     * @return array
+     */
+    public function getPermissionsAttribute()
+    {
+        $user = auth()->user();
+        
+        return [
+            'update' => optional($user)->can('update', $this),
+            'delete' => optional($user)->can('delete', $this),
+        ];
     }
 
     /**

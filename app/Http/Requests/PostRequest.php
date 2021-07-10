@@ -26,7 +26,6 @@ class PostRequest extends FormRequest
         return [
             'title' => ['required', 'string'],
             'body' => ['required', 'string'],
-            'image' => ['image', 'nullable'],
             'published_at' => ['required', 'date'],
             'tags.*.keyword' => ['string', 'nullable'],
         ];

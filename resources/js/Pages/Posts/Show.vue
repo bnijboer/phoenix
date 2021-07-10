@@ -8,20 +8,14 @@
     <div class="flex justify-between mt-10">
         <back-link />
         
-        <div v-if="owner" class="flex justify-end">
-            <inertia-link :href="route('posts.edit', post)" class="btn btn-yellow">Bewerken</inertia-link>
+        <div class="flex justify-end">
+            <inertia-link v-if="post.permissions.update" :href="route('posts.edit', post)" class="btn btn-yellow">Bewerken</inertia-link>
             
-            <form @submit.prevent="form.delete(route('posts.destroy', post))">
+            <form v-if="post.permissions.delete" @submit.prevent="form.delete(route('posts.destroy', post))">
                 <submit-button :class="['btn-red ml-2', { 'opacity-25': form.processing }]" :disabled="form.processing">Verwijderen</submit-button>
             </form>
         </div>
     </div>
-    
-    <!-- <div class="text-center">
-        <inertia-link :href="route('posts.show', this.previousPost)" class="btn btn-blue">Vorige post</inertia-link>
-    
-        {{ previousPost }}
-    </div> -->
     
     <comments :post="post" />
 </template>
@@ -54,22 +48,5 @@
 
             return { form };
         },
-        
-        computed: {
-            owner() {
-                if (this.user) {
-                    return this.$page.props.auth.user.is_editor || this.$page.props.auth.user.is_admin;
-                }
-            },
-            
-            user() {
-                return this.$page.props.auth.user;
-            },
-            
-            previousPost() {
-                axios.get(route('posts.previous', this.post))
-                    .then(response => {return response.data});
-            }
-        }
     }
 </script>

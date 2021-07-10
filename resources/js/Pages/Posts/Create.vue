@@ -1,52 +1,46 @@
 <template>
-    <form @submit.prevent="submit">
+    <form @submit.prevent="form.post(route('posts.store'), form)">
         <div>
-            <form-label for="title" />
-            <form-input id="title" type="text" placeholder="Titel" class="mt-1 block w-full" v-model="form.title" required autofocus />
+            <form-label for="title" value="Titel" />
+            
+            <form-input id="title" type="text" placeholder="Titel" class="form-input" v-model="form.title" autofocus />
+            
             <validation-error :message="form.errors.title" />
         </div>
         
-        <div class="mt-4">
-            <tiptap ref="body" />
+        <div class="mt-6">
+            <form-label value="Inhoud" />
+            
+            <tiptap ref="body" @input="getBody" />
+            
+            <validation-error :message="form.errors.body" />
         </div>
 
-        <!-- <div class="mt-4">
-            <form-label for="body" />
-            <form-input id="body" type="text" placeholder="Inhoud" class="mt-1 block w-full" v-model="form.body" required />
-            <validation-error :message="form.errors.body" />
-        </div> -->
-
-        <!-- <div class="mt-4">
-            <form-label for="image" />
-            <form-input id="image" type="file" class="mt-1 block w-full" @change="selectFile" />
-            <validation-error :message="form.errors.image" />
-        </div> -->
-
-        <div class="mt-4 inline-flex" v-for="(tag, index) in form.tags" :key="index">
-            <form-label :for="`keyword${index}`" />
-            <form-input :id="`keyword${index}`" type="text" :placeholder="`Tag ${index + 1}`" v-model="tag.keyword" class="capitalize" />
-            <validation-error :message="form.errors.tags" />
-
-            <div class="mx-1">
-                <button @click="removeTag(index)" v-show="index || (!index && form.tags.length > 1)" class="text-red-500 hover:text-red-700">
-                    <i class="fas fa-minus-circle" />
-                </button>
+        <div class="mt-6">
+            <form-label value="Tags" />
+            
+            <div class="inline-flex mb-3" v-for="(tag, index) in form.tags" :key="index">
+                <form-input :id="`keyword${index}`" type="text" :placeholder="`Tag ${index + 1}`" v-model="tag.keyword" class="capitalize" />
                 
-                <button @click="addTag()" v-show="index === form.tags.length - 1" class="text-green-500 hover:text-green-700 ml-1">
-                    <i class="fas fa-plus-circle" />
-                </button>
+                <validation-error :message="form.errors.tags" />
+
+                <div class="mr-3">
+                    <a class="text-red-500 hover:text-red-700 ml-1" @click="removeTag(index)" v-show="index || (!index && form.tags.length > 1)">
+                        <i class="fas fa-minus-circle" />
+                    </a>
+                    
+                    <a class="text-green-500 hover:text-green-700 ml-1" v-show="index === form.tags.length - 1" @click="addTag">
+                        <i class="fas fa-plus-circle" />
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="mt-4">
-            <form-label for="date-picker" />
-            <form-input
-                id="date-picker"
-                type="date"
-                class="mt-1 block w-full"
-                :min="min"
-                v-model="form.published_at"
-                required />
+        <div class="mt-3">
+            <form-label for="date-picker" value="Publicatiedatum" />
+            
+            <form-input id="date-picker" type="date" class="form-input" :min="min" v-model="form.published_at" />
+            
             <validation-error :message="form.errors.published_at" />
         </div>
 
@@ -78,8 +72,6 @@
             ValidationError,
         },
 
-        inheritAttrs: false,
-
         setup () {
             const form = useForm({
                 title: null,
@@ -110,16 +102,10 @@
             removeTag(index) {
                 this.form.tags.splice(index, 1);
             },
-
-            selectFile(event) {
-                this.form.image = event.target.files[0];
-            },
-
-            submit() {
-                this.form.body = this.$refs.body.editor.getHTML();
-                
-                this.form.post(route('posts.store'), this.form);
-            },
+            
+            getBody(value) {
+                this.form.body = value;
+            }
         },
     }
 </script>

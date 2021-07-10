@@ -12,6 +12,7 @@ module.exports = {
         fontFamily: {
           sans: ['Raleway', 'sans-serif'],
           serif: ['Merriweather', 'serif'],
+          cursive: ['Dancing Script', 'cursive'],
         },
     },
 

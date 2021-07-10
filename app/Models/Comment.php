@@ -17,7 +17,6 @@ class Comment extends Model
      */
     protected $fillable = [
         'content',
-        'user_id',
     ];
     
     /**
@@ -28,7 +27,30 @@ class Comment extends Model
     protected $with = ['user'];
     
     /**
-     * The user that owns the posts.
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'permissions',
+    ];
+    
+    /**
+     * Returns policy permissions for the model.
+     *
+     * @return array
+     */
+    public function getPermissionsAttribute()
+    {
+        $user = auth()->user();
+        
+        return [
+            'delete' => optional($user)->can('delete', $this),
+        ];
+    }
+    
+    /**
+     * The post associated with the comments.
      */
     public function post()
     {

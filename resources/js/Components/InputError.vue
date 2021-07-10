@@ -1,9 +1,5 @@
 <template>
-    <div v-show="message">
-        <p class="text-sm text-red-600 mt-2">
-            {{ message }}
-        </p>
-    </div>
+    <div v-show="message" class="text-sm text-red-600 mt-2">{{ message }}</div>
 </template>
 
 <script>

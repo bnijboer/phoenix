@@ -6,7 +6,7 @@
             <div class="post-date w-16 tracking-widest text-gray-500 font-bold border-4 border-purple-400 rounded-sm">{{ date }}</div>
             
             <div class="w-full">
-                <div class="post-title bg-purple-200 tracking-wider text-2xl text-gray-700 rounded-md">{{ post.title }}</div>
+                <div class="post-title bg-purple-200 tracking-wider text-2xl text-gray-700 rounded-sm">{{ post.title }}</div>
             </div>
         </div>
         

@@ -59,13 +59,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
-
-    // public function getAvatarAttribute($value)
-    // {
-    //     if (isset($value)) {
-    //         return asset('storage/' . $value);
-    //     } else {
-    //         return asset('images/default-avatar.jpeg');
-    //     }
-    // }
 }

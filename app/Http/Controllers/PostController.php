@@ -8,7 +8,6 @@ use App\Models\Tag;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 use Inertia\Response;
 
 class PostController extends Controller
@@ -65,7 +64,7 @@ class PostController extends Controller
         
         $post->publishIfDue();
 
-        return redirect()->route('posts.show', $post);
+        return redirect()->route('posts.show', $post)->with('success', 'Je blogpost is aangemaakt!');
     }
 
     /**
@@ -115,7 +114,7 @@ class PostController extends Controller
         
         $post->publishIfDue();
 
-        return redirect()->route('posts.show', $post);
+        return redirect()->route('posts.show', $post)->with('success', 'Je blogpost is bijgewerkt!');
     }
 
     /**
@@ -132,21 +131,6 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect()->route('posts.index');
-    }
-    
-    public function previous(Post $post) {
-        
-        $post = Post::find($post->id - 1);
-        
-        while (! $post->is_published) {
-            if (Auth::user()->isOwner()) {
-                return $post->toJson();
-            }
-            
-            $post = Post::find($post->id - 1);
-        }
-        
-        return $post->toJson();
+        return redirect()->route('posts.index')->with('success', 'Je blogpost is verwijderd!');
     }
 }

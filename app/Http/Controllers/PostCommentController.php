@@ -31,13 +31,12 @@ class PostCommentController extends Controller
     public function store(Post $post, CommentRequest $request): string
     {
         $this->authorize('create', Comment::class);
-
+        
         $comment = $post->comments()->make($request->validated());
-        $comment->user_id = $request->user()->id;
+        $comment->user()->associate($request->user());
+        
         $comment->save();
-
-        $comment->user = $request->user();
-
+        
         return $comment->toJson();
     }
 

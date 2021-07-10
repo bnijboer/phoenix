@@ -1,7 +1,9 @@
 <template>
-    <label class="block font-medium text-sm text-gray-700">
+    <label class="block font-medium text-xs tracking-wider text-gray-600 mb-2">
         <span v-if="value">{{ value }}</span>
-        <span v-else><slot /></span>
+        <span v-else>
+            <slot />
+        </span>
     </label>
 </template>
 

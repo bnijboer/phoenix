@@ -4,7 +4,7 @@
             <div class="flex justify-between px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-shrink-0 items-center">
                     <inertia-link :href="route('home')">
-                        <application-logo class="block h-9 w-auto" />
+                        <logo class="block h-9 w-auto" />
                     </inertia-link>
                 </div>
     
@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="absolute top-18 right-7 w-72 bg-white border border-gray-200 shadow-lg rounded-lg p-4 mr-2 ml-auto">
+            <div :class="['absolute top-18 right-7 w-72 bg-white border border-gray-200 shadow-lg rounded-lg p-4 mr-2 ml-auto', {'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}]" class="">
                 <nav-links />
             </div>
         </nav>
@@ -27,15 +27,16 @@
             <banner />
         </header>
 
-        <section class="flex items-start justify-center bg-gradient-to-b from-white to-transparent antialiased pb-14">
-            <main class="w-full sm:w-5/6 md:w-3/4 lg:w-1/2 bg-white px-3 sm:px-6 md:px-9 lg:px-12 py-12">
+        <section class="flex items-start bg-gradient-to-b from-white to-transparent antialiased">
+            <main class="w-full sm:w-5/6 md:w-3/4 lg:w-1/2 bg-white px-3 sm:px-6 md:px-9 lg:px-12 pt-12 pb-20 mx-auto">
                 <div class="overflow-hidden">
                     <div class="banner flex flex-col justify-center mb-10">
                         <div class="lg:hidden">
                             <banner />
                         </div>
                     </div>
-                    
+                    <flash-messages />
+                            
                     <slot />
                 </div>
             </main>
@@ -55,21 +56,23 @@
     </div>
 
     <footer class="flex items-center">
-        <div class="text-sm text-center text-gray-500 font-extralight tracking-wider ml-auto pr-4">&copy; 2021 BN</div>
+        <div class="text-sm text-center text-gray-500 font-extralight tracking-wider mx-auto pr-4">&copy; 2021 BN</div>
     </footer>
 </template>
 
 <script>
-    import ApplicationLogo from '@/Components/ApplicationLogo';
+    import Logo from '@/Components/ApplicationLogo';
     import Banner from '@/Layouts/Partials/Banner';
     import Biography from '@/Layouts/Partials/Biography';
+    import FlashMessages from '@/Components/FlashMessages';
     import NavLinks from '@/Layouts/Partials/NavLinks';
 
     export default {
         components: {
-            ApplicationLogo,
+            Logo,
             Banner,
             Biography,
+            FlashMessages,
             NavLinks,
         },
 
