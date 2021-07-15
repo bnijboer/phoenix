@@ -24,7 +24,7 @@ class PostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string'],
+            'title' => ['required', 'string', 'max:25'],
             'body' => ['required', 'string'],
             'published_at' => ['required', 'date'],
             'tags.*.keyword' => ['string', 'nullable'],

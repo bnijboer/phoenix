@@ -32953,6 +32953,39 @@ p {
   background-color: rgba(254, 202, 202, var(--tw-bg-opacity));
 }
 
+.btn-tiptap {
+  --tw-bg-opacity: 1;
+  background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+}
+
+.btn-tiptap:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+}
+
+.btn-tiptap {
+  border-radius: 0.125rem;
+  margin: 0.25rem;
+}
+
+.btn-tiptap:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.btn-tiptap {
+  padding: 0.5rem;
+  --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-text-opacity: 1;
+  color: rgba(55, 65, 81, var(--tw-text-opacity));
+}
+
+.btn-tiptap:hover {
+  --tw-text-opacity: 1;
+  color: rgba(17, 24, 39, var(--tw-text-opacity));
+}
+
 /* Tailwind preflight */
 
 /* Layout */

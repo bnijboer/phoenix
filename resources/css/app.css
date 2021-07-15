@@ -79,6 +79,10 @@
     .flash-error {
         @apply bg-red-200;
     }
+    
+    .btn-tiptap {
+        @apply bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900 focus:outline-none shadow-sm rounded-sm p-2 m-1;
+    }
 }
   
 

@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div :class="['absolute top-18 right-7 w-72 bg-white border border-gray-200 shadow-lg rounded-lg p-4 mr-2 ml-auto', {'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}]" class="">
+            <div :class="['absolute top-18 right-7 w-72 bg-white border border-gray-200 shadow-lg rounded-lg p-4 mr-2 ml-auto', {'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}]">
                 <nav-links />
             </div>
         </nav>
@@ -35,6 +35,7 @@
                             <banner />
                         </div>
                     </div>
+                    
                     <flash-messages />
                             
                     <slot />
@@ -61,18 +62,18 @@
 </template>
 
 <script>
-    import Logo from '@/Components/ApplicationLogo';
     import Banner from '@/Layouts/Partials/Banner';
     import Biography from '@/Layouts/Partials/Biography';
     import FlashMessages from '@/Components/FlashMessages';
+    import Logo from '@/Components/ApplicationLogo';
     import NavLinks from '@/Layouts/Partials/NavLinks';
 
     export default {
         components: {
-            Logo,
             Banner,
             Biography,
             FlashMessages,
+            Logo,
             NavLinks,
         },
 

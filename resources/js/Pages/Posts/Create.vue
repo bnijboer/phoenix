@@ -39,7 +39,7 @@
         <div class="mt-3">
             <form-label for="date-picker" value="Publicatiedatum" />
             
-            <form-input id="date-picker" type="date" class="form-input" :min="min" v-model="form.published_at" />
+            <form-input id="date-picker" type="date" class="mt-1 block" :min="min" v-model="form.published_at" />
             
             <validation-error :message="form.errors.published_at" />
         </div>

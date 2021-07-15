@@ -1,51 +1,53 @@
 <template>
     <div class="border border-dark rounded-lg p-4">
-        <div v-if="editor">
-            <button type="button" @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">
+        <div v-if="editor" class="flex flex-wrap">
+            <tiptap-button @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">
                 <i class="fas fa-bold" />
-            </button>
-            <button type="button" @click="editor.chain().focus().toggleItalic().run()" :class="{ 'is-active': editor.isActive('italic') }">
+            </tiptap-button>
+            <tiptap-button @click="editor.chain().focus().toggleItalic().run()" :class="{ 'is-active': editor.isActive('italic') }">
                 <i class="fas fa-italic" />
-            </button>
-            <button type="button" @click="editor.chain().focus().toggleStrike().run()" :class="{ 'is-active': editor.isActive('strike') }">
+            </tiptap-button>
+            <tiptap-button @click="editor.chain().focus().toggleStrike().run()" :class="{ 'is-active': editor.isActive('strike') }">
                 <i class="fas fa-strikethrough" />
-            </button>
+            </tiptap-button>
             
-            <button type="button" @click="editor.chain().focus().setParagraph().run()" :class="{ 'is-active': editor.isActive('paragraph') }">
+            <tiptap-button @click="editor.chain().focus().setParagraph().run()" :class="{ 'is-active': editor.isActive('paragraph') }">
                 <i class="fas fa-paragraph" />
-            </button>
-            <button type="button" @click="editor.chain().focus().setHorizontalRule().run()">_</button>
+            </tiptap-button>
+            <tiptap-button @click="editor.chain().focus().setHorizontalRule().run()" :class="{ 'is-active': editor.isActive('horizontalRule') }">_</tiptap-button>
             
-            <button type="button" @click="editor.chain().focus().toggleHeading({ level: 1 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }">H1</button>
-            <button type="button" @click="editor.chain().focus().toggleHeading({ level: 2 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }">H2</button>
-            <button type="button" @click="editor.chain().focus().toggleHeading({ level: 3 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 3 }) }">H3</button>
+            <tiptap-button @click="editor.chain().focus().toggleHeading({ level: 1 }).run()" :class="['font-black', { 'is-active': editor.isActive('heading', { level: 1 }) }]">H1</tiptap-button>
+            <tiptap-button @click="editor.chain().focus().toggleHeading({ level: 2 }).run()" :class="['font-black', { 'is-active': editor.isActive('heading', { level: 2 }) }]">H2</tiptap-button>
+            <tiptap-button @click="editor.chain().focus().toggleHeading({ level: 3 }).run()" :class="['font-black', { 'is-active': editor.isActive('heading', { level: 3 }) }]">H3</tiptap-button>
             
-            <button type="button" @click="editor.chain().focus().toggleBulletList().run()" :class="{ 'is-active': editor.isActive('bulletList') }">
+            <tiptap-button @click="editor.chain().focus().toggleBulletList().run()" :class="{ 'is-active': editor.isActive('bulletList') }">
                 <i class="fas fa-list-ul" />
-            </button>
-            <button type="button" @click="editor.chain().focus().toggleOrderedList().run()" :class="{ 'is-active': editor.isActive('orderedList') }">
+            </tiptap-button>
+            <tiptap-button @click="editor.chain().focus().toggleOrderedList().run()" :class="{ 'is-active': editor.isActive('orderedList') }">
                 <i class="fas fa-list-ol" />
-            </button>
-            <button type="button" @click="editor.chain().focus().toggleBlockquote().run()" :class="{ 'is-active': editor.isActive('blockquote') }">
+            </tiptap-button>
+            <tiptap-button @click="editor.chain().focus().toggleBlockquote().run()" :class="{ 'is-active': editor.isActive('blockquote') }">
                 <i class="fas fa-quote-left" /><i class="fas fa-quote-right" />
-            </button>
+            </tiptap-button>
             
-            <button type="button" @click="editor.chain().focus().undo().run()">
+            <tiptap-button @click="editor.chain().focus().undo().run()">
                 <i class="fas fa-undo" />
-            </button>
-            <button type="button" @click="editor.chain().focus().redo().run()">
+            </tiptap-button>
+            <tiptap-button @click="editor.chain().focus().redo().run()">
                 <i class="fas fa-redo" />
-            </button>
+            </tiptap-button>
             
-            <button type="button" @click="addImage">
+            <tiptap-button @click="addImage">
                 <i class="far fa-image" />
-            </button>
+            </tiptap-button>
             
-            <button type="button" @click="editor.chain().focus().unsetAllMarks().run()">clear marks</button>
-            <button type="button" @click="editor.chain().focus().clearNodes().run()">clear nodes</button>
+            <tiptap-button @click="editor.chain().focus().unsetAllMarks().run()" :class="'font-black'">clear marks</tiptap-button>
+            <tiptap-button @click="editor.chain().focus().clearNodes().run()" :class="'font-black'">clear nodes</tiptap-button>
         </div>
         
-        <editor-content :editor="editor" />
+        <div class="m-5">
+            <editor-content :editor="editor" />
+        </div>
     </div>
 </template>
 
@@ -54,10 +56,12 @@
     import Dropcursor from '@tiptap/extension-dropcursor'
     import Image from '@tiptap/extension-image'
     import StarterKit from '@tiptap/starter-kit'
+    import TiptapButton from '@/Components/TiptapButton'
 
     export default {
         components: {
             EditorContent,
+            TiptapButton,
         },
 
         props: {
@@ -126,10 +130,6 @@
 </script>
 
 <style scoped>
-    i {
-        margin: 5px;
-    }
-    
     img {
         max-width: 100%;
         height: auto;
